@@ -45,9 +45,8 @@ export default class TodoScreen extends React.Component {
               Press somewhere to add something to do
             </Text>
           </View>
-
         </ScrollView>
-
+      </View>
     );
   }
 
