@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TodoScreen from '../screens/TodoScreen';
+import CalendarsScreen from '../screens/CalendarsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -26,12 +27,12 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const CalendarStack = createStackNavigator({
+  Calendar: CalendarsScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+CalendarStack.navigationOptions = {
+  tabBarLabel: 'Calendar',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -72,7 +73,7 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+  CalendarsScreen,
   SettingsStack,
   TodoStack,
 });
