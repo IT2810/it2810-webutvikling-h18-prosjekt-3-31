@@ -5,7 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import StepScreen from '../screens/StepScreen';
 import TodoScreen from '../screens/TodoScreen';
 
 const HomeStack = createStackNavigator({
@@ -56,12 +56,12 @@ TodoStack.navigationOptions = {
     />
   ),
 };
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const StepStack = createStackNavigator({
+  Steps: StepScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+StepStack.navigationOptions = {
+  tabBarLabel: 'Steps',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -73,6 +73,6 @@ SettingsStack.navigationOptions = {
 export default createBottomTabNavigator({
   HomeStack,
   LinksStack,
-  SettingsStack,
+  StepStack,
   TodoStack,
 });
