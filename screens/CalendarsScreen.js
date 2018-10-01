@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 import {Calendar} from 'react-native-calendars';
+import {Agenda} from 'react-native-calendars';
 
 export default class CalendarsScreen extends Component {
   constructor(props) {
@@ -21,15 +22,23 @@ export default class CalendarsScreen extends Component {
           style={styles.calendar}
           onDayPress={this.onDayPress}
           current={'2012-05-16'}
-          displayLoadingIndicator
           markingType={'multi-dot'}
           markedDates={{
-            [this.state.selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'},
-            '2012-05-08': {dots: [{key: 'vacation', color: 'blue', selectedDotColor: 'white'}, {key: 'massage', color: 'red', selectedDotColor: 'white'}], selected: true},
-            '2012-05-09': {dots: [{key: 'vacation', color: 'blue', selectedDotColor: 'red'}, {key: 'massage', color: 'red', selectedDotColor: 'blue'}], disabled: true}
+            [this.state.selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
           }}
+          
           hideArrows={false}
         />
+        <Agenda
+          selected={'2012-05-16'}
+          pastScrollRange={50}
+          futureScrollRange={50}
+          renderItem={(item, firstItemInDay) => {return (<View />);}}
+          renderDay={(day, item) => {return (<View />);}}
+          renderEmptyDate={() => {return (<View />);}}
+          // Set this true while waiting for new data from a refresh
+          refreshing={false}
+          />
       </ScrollView>
     );
   }
