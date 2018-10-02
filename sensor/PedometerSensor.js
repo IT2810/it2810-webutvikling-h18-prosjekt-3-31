@@ -1,88 +1,82 @@
-import Expo from "expo";
-import React from "react";
-import { Pedometer } from "expo";
-import { StyleSheet, Text, View } from "react-native";
+const React = require('react-native-pedometer');
+const {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+} = React;
+const Pedometer = require('/node_modules/react-native-pedometer/pedometer');
 
-export default class PedometerSensor extends React.Component {
-  state = {
-    isPedometerAvailable: "checking",
-    pastStepCount: 0,
-    currentStepCount: 0
-  };
+// ../node_modules/react-native-pedometer/pedometer.js
+// ../node_modules/expo/src/Pedometer.ts
+
+const PedometerSensor = React.createClass({
+  getInitialState() {
+      return {
+        startDate: null,
+        endDate: null,
+        numberOfSteps: 0,
+        distance: 0,
+        floorsAscended: 0,
+        floorsDescended: 0,
+        currentPace: 0,
+        currentCadence: 0,
+      };
+    },
 
   componentDidMount() {
-    this._subscribe();
-  }
+    this._startUpdates();
+  },
 
-  componentWillUnmount() {
-    this._unsubscribe();
-  }
+  _startUpdates() {
+    const today = new Date();
+    today.setHours(0,0,0,0);
 
-  _subscribe = () => {
-    this._subscription = Pedometer.watchStepCount(result => {
-      this.setState({
-        currentStepCount: result.steps
-      });
+    Pedometer.startPedometerUpdatesFromDate(today.toTime(), (motionData) => {
+      console.log("motionData: " + motionData);
+      this.setState(motionData);
     });
-
-    Pedometer.isAvailableAsync().then(
-      result => {
-        this.setState({
-          isPedometerAvailable: String(result)
-        });
-      },
-      error => {
-        this.setState({
-          isPedometerAvailable: "Could not get isPedometerAvailable: " + error
-        });
-      }
-    );
-
-    const end = new Date();
-    const start = new Date();
-    start.setDate(end.getDate() - 1);
-    Pedometer.getStepCountAsync(start, end).then(
-      result => {
-        this.setState({ pastStepCount: result.steps });
-      },
-      error => {
-        this.setState({
-          pastStepCount: "Could not get stepCount: " + error
-        });
-      }
-    );
-  };
-
-  _unsubscribe = () => {
-    this._subscription && this._subscription.remove();
-    this._subscription = null;
-  };
+  },
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>
-          Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}
+        <Text style={styles.largeNotice}>
+          {this.state.numberOfSteps}
         </Text>
-        <Text>
-          Steps taken in the last 24 hours: {this.state.pastStepCount}
+        <Text style={styles.status}>
+          You walked {this.state.numberOfSteps} step{this.state.numberOfSteps==1 ? '' : 's'}, or about {this.state.distance} meters.
+          </Text>
+          <Text style={styles.status}>
+          You went up {this.state.floorsAscended} floor{this.state.floorsAscended==1 ? '' : 's'}, and down {this.state.floorsDescended}.
         </Text>
-        <Text>Walk! And watch this go up: {this.state.currentStepCount}</Text>
+        <Text style={styles.instructions}>
+          Just keep your phone in your pocket and go for a walk!
+        </Text>
       </View>
     );
   }
-}
+});
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 15,
-    alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
 });
 
-Expo.registerRootComponent(PedometerSensor);
+AppRegistry.registerComponent('PedometerSensor', () => PedometerSensor);
 
-
-// src: https://docs.expo.io/versions/latest/sdk/pedometer
+// https://www.npmjs.com/package/react-native-stepcounter
