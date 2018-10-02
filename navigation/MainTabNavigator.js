@@ -1,10 +1,8 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TodoScreen from '../screens/TodoScreen';
 import CalendarsScreen from '../screens/CalendarsScreen';
@@ -20,8 +18,8 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-home${focused ? '' : '-outline'}`
+          : 'ios-home-outline'
       }
     />
   ),
@@ -36,7 +34,10 @@ CalendarStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      name={
+        Platform.OS === 'ios' 
+          ? `ios-calendar${focused ? '' : '-outline'}` 
+          : 'md-calendar'}
     />
   ),
 };
@@ -51,8 +52,8 @@ TodoStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-list${focused ? '' : '-outline'}`
+          : 'mformat-list-bulleted'   // The tabBar is a bullet list
       }
     />
   ),
@@ -73,7 +74,7 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  CalendarsScreen,
+  CalendarStack,
   SettingsStack,
   TodoStack,
 });
