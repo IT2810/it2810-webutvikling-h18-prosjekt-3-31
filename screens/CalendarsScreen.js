@@ -4,32 +4,9 @@ import {
   ScrollView,
 } from 'react-native';
 import {Agenda} from 'react-native-calendars';
-import { AppRegistry } from 'react-native';
-import { View, Text, Button } from 'native-base';
-import GenerateForm from 'react-native-form-builder';
+import { AppRegistry, Button } from 'react-native';
+import { View, Text } from 'native-base';
 
-const fields = [
-  {
-    type: 'text',
-    name: 'Appointment',
-    required: true,
-    label: 'Appointment',
-  },
-  {
-    type: 'date',
-    name: 'date',
-    icon: 'ios-date',
-    required: true,
-    label: 'Date',
-  },
-  {
-    type: 'time',
-    name: 'time',
-    icon: 'ios-time',
-    required: false,
-    label: 'Time',
-  }
-];
 
 const appointment1 = {"appointment": "Hello there person",
                     "dateString": "2017-05-16",
@@ -66,8 +43,10 @@ export default class CalendarsScreen extends Component {
     super(props);
     this.state = {items: {}};
     this.addItems.bind(this)
+    const { navigation } = this.props;
     
   }
+  static navigationOptions = { header: null } 
 
   componentWillMount(){
     this.addItems(appointment1);
@@ -75,6 +54,7 @@ export default class CalendarsScreen extends Component {
     this.addItems(appointment3);
     this.addItems(appointment4);
 }
+  
 
   render() {
     return (
@@ -95,8 +75,8 @@ export default class CalendarsScreen extends Component {
          
       </ScrollView>
       <Button
-        title="Sign Up!"
-        onPress={FormGenerator}
+        title="New Appointment"
+        onPress={() => this.props.navigation.navigate('Form')}
       />
         
       </View>
@@ -190,38 +170,6 @@ export default class CalendarsScreen extends Component {
   }
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//FORMS//
-//////////////////////////////////////////////////////////////////////////////////////////////////
-class FormGenerator extends Component {
-  newAppointment() {
-    const formValues = this.formGenerator.getValues();
-    console.log('FORM VALUES', formValues);
-  }
-  render() {
-    return (
-      <View style={styles.wrapper}>
-        <View>
-          <GenerateForm
-            ref={(c) => {
-              this.formGenerator = c;
-            }}
-            fields={fields}
-          />
-        </View>
-        <View style={styles.submitButton}>
-          <Button block onPress={() => this.newAppointment()}>
-            <Text>Login</Text>
-          </Button>
-        </View>
-      </View>
-    );
-  }
-}
-
-
-
-AppRegistry.registerComponent('FormGenerator', () => FormGenerator);
 
 const styles = StyleSheet.create({
   calendar: {
@@ -238,9 +186,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee'
   },
   container: {
-    backgroundColor: 'gray',
+    backgroundColor: 'white',
     paddingTop: 23,
-    height: 620
+    height: 600
   },
   Agenda:{
     height:570
@@ -263,7 +211,7 @@ const styles = StyleSheet.create({
     marginTop: 150,
   },
   Button: {
-    paddingHorizontal: 10,
-    paddingTop: 20,
+    paddingHorizontal: 0,
+    paddingTop: 0,
   }
 });
