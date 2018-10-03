@@ -20,9 +20,9 @@ export default class TodoScreen extends Component {
     text: ""
   };
 
-  // The title of the app
+  // The title of the screen
   static navigationOptions = {
-    title: 'Todos',
+    title: 'Your Personal Todos - You can do this!',
   };
 
   changeTextHandler = text => {
@@ -109,17 +109,18 @@ let Tasks = {
     return callback(
       tasks ? tasks.split("||").map((task, i) => ({ key: i, text: task })) : []
     );
+    console.log(tasks)
   },
   convertToStringWithSeparators(tasks) {
     return tasks.map(task => task.text).join("||");
   },
   all(callback) {
-    return AsyncStorage.getItem("TASKS", (err, tasks) =>
+    return AsyncStorage.getItem('TASKS', (err, tasks) =>
       this.convertToArrayOfObject(tasks, callback)
     );
   },
   save(tasks) {
-    AsyncStorage.setItem("TASKS", this.convertToStringWithSeparators(tasks));
+    AsyncStorage.setItem('TASKS', this.convertToStringWithSeparators(tasks));
   }
 };
 
