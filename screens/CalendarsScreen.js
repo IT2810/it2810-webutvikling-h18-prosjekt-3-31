@@ -6,6 +6,7 @@ import {
 import {Agenda} from 'react-native-calendars';
 import { AppRegistry, Button } from 'react-native';
 import { View, Text } from 'native-base';
+import { AsyncStorage } from "react-native"
 
 
 const appointment1 = {"appointment": "Hello there person",
@@ -43,20 +44,86 @@ export default class CalendarsScreen extends Component {
     super(props);
     this.state = {items: {}};
     this.addItems.bind(this)
-    const { navigation } = this.props;
+    let day = 'nothing'
+    let retrievekey = 0
+    let storekey = 0
     
   }
-  static navigationOptions = { header: null } 
 
-  componentWillMount(){
-    this.addItems(appointment1);
-    this.addItems(appointment2);
-    this.addItems(appointment3);
-    this.addItems(appointment4);
-}
+  static navigationOptions = { header: null } 
+  //
+  componentDidMount(){
+    const { navigation } = this.props;
+    const day = navigation.getParam('day', 'nothing');
+    console.log(day);
+    /*if (this.retrievekey == null){
+      this.retrievekey = 0;
+    }
+    while (this.getKey(this.retrievekey) != null){
+      
+      this.getKey(this.retrievekey).then(value => {this.addItems(value)});
+      this.retrievekey = this.retrievekey + 1;
+    }
+    this.storekey = this.retrievekey + 1;
+  */
+  }
+
   
+  componentDidUpdate(){
+    if (this.day != this.props.navigation.getParam('day', 'nothing')){
+      this.componentPropsHasChanged(this.props.navigation.getParam('day', 'nothing'));
+      
+    }
+    this.day = this.props.navigation.getParam('day', 'nothing');
+  }
+  /*
+  async getKey(retrievekey) {
+    try {
+      const value = await AsyncStorage.getItem('@Calendar:' +'Appointment' + retrievekey);
+      return value;
+    } catch (error) {
+      console.log("Error retrieving data" + error);
+    }
+  }
+
+  async saveKey(storekey, value) {
+    try {
+      await AsyncStorage.setItem('@Calendar:'+ 'Appointment' + storekey, JSON.stringify(value));
+    } catch (error) {
+      console.log("Error saving data" + error);
+    }
+  }*/
+
+  createDayObject(Appointment, date, time){
+    const hour = time.toISOString().substring(11,13);
+    const minutes = time.toISOString().substring(14,16);
+    const seconds = time.toISOString().substring(17,19);
+    const milliseconds = time.toISOString().substring(20,21);
+    const year = date.toISOString().substring(0,4);
+    const day = date.toISOString().substring(8,10);
+    const month = date.toISOString().substring(5,7);
+    const newDayObject = {"appointment": Appointment,
+                    "dateString": date.toISOString().substring(0,10),
+                    "day": day,
+                    "month": month,
+                    "timestamp": this.getEpochTime(year, month, day, hour, minutes, seconds, milliseconds),
+                    "year": year
+                    };
+    console.log(newDayObject);
+    this.addItems(newDayObject);
+    //this.saveKey(this.storekey, newDayObject);
+    //this.storekey = this.storekey + 1;
+
+  }
+  componentPropsHasChanged(day){
+    if (day != 'nothing' && day != undefined){
+      this.createDayObject(day.Appointment, day.date, day.time);
+      
+    }
+  }
 
   render() {
+    
     return (
       <View>
       <ScrollView style={styles.container}>
@@ -104,13 +171,25 @@ export default class CalendarsScreen extends Component {
           name: day.appointment + ' ' + strTime,
           height: Math.max(50, Math.floor(Math.random() * 150))
         });
-      const newItems = {};
+        const newItems = {};
           Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
           this.setState({
             items: newItems
         });
       }
-    }
+      else{
+        this.state.items[strTime].push({
+          name: day.appointment + ' ' + strTime,
+          height: Math.max(50, Math.floor(Math.random() * 150))
+        });
+        const newItems = {};
+        Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
+        this.setState({
+          items: newItems
+      });
+      }
+      
+      }
 
 
   //Fills in empty list items for days with no items, to have them render properly in the agenda
@@ -164,8 +243,8 @@ export default class CalendarsScreen extends Component {
   }
 
   //Gets unix timestamp for date
-  getEpochTime(year, month, day){
-    var milliseconds = (new Date(year, month, day)).getTime();
+  getEpochTime(year, month, day, hours, minutes, seconds, milliseconds){
+    var milliseconds = (new Date(year, month - 1, day - 1, hours, minutes, seconds, milliseconds)).getTime();
     return milliseconds;
   }
 }

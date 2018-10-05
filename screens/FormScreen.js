@@ -3,9 +3,10 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import { AppRegistry, Button } from 'react-native';
-import { View, Text } from 'native-base';
+import { AppRegistry } from 'react-native';
+import { View, Text, Button } from 'native-base';
 import GenerateForm from 'react-native-form-builder';
+import { Font, AppLoading } from "expo";
 
 const fields = [
     {
@@ -31,34 +32,54 @@ const fields = [
 export default class FormScreen extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {loading: true};
+        
       }
 
+    async componentWillMount() {
+      await Font.loadAsync({
+        Roboto: require("native-base/Fonts/Roboto.ttf"),
+        Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+      });
+      this.setState({ loading: false });
+    }
+    
     newAppointment() {
       const formValues = this.FormScreen.getValues();
-      console.log('FORM VALUES', formValues);
+      //console.log('FORM VALUES', formValues);
+      return formValues;
     }
+
     render() {
-      return (
-        <View style={styles.wrapper}>
-          <View>
-            <GenerateForm
-              ref={(c) => {
-                this.formGenerator = c;
-              }}
-              fields={fields}
-            />
+      if (this.state.loading) {
+          return (
+            <View>
+            <AppLoading />
           </View>
-          <View style={styles.Button}>
-          <Button
-                title="Submit"
-                onPress={() => this.props.navigation.goBack()}
-                />
+          );
+        }
+        return(
+          <View style={styles.wrapper}>
+            <View>
+              <GenerateForm
+                ref={(c) => {
+                  this.FormScreen = c;
+                }}
+                fields={fields}
+              />
+            </View>
+            <View style={styles.Button}>
+            <Button block onPress={() => this.props.navigation.navigate('Calendar',{
+              day: this.newAppointment()
+            })
+          }>
+              <Text>Add Appointment</Text>
+            </Button>
+            </View>
           </View>
-        </View>
-      );
+        );
+      }
     }
-  }
   const styles = StyleSheet.create({
     wrapper: {
       flex: 1,
