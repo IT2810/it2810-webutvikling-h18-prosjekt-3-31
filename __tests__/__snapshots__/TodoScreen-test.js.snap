@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Todoscreen snapshot renders the loading screen 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#F5FCFF",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 10,
+        "paddingTop": 20,
+      },
+      Object {
+        "paddingBottom": undefined,
+      },
+    ]
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    onSubmitEditing={[Function]}
+    placeholder="Add Tasks"
+    returnKeyLabel="done"
+    returnKeyType="done"
+    style={
+      Object {
+        "borderColor": "gray",
+        "borderWidth": 1,
+        "height": 40,
+        "paddingLeft": 10,
+        "paddingRight": 10,
+        "width": "100%",
+      }
+    }
+    value=""
+  />
+</View>
+`;
+
+exports[`Todoscreen snapshot renders the root without loading screen 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#F5FCFF",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 10,
+        "paddingTop": 20,
+      },
+      Object {
+        "paddingBottom": undefined,
+      },
+    ]
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    onSubmitEditing={[Function]}
+    placeholder="Add Tasks"
+    returnKeyLabel="done"
+    returnKeyType="done"
+    style={
+      Object {
+        "borderColor": "gray",
+        "borderWidth": 1,
+        "height": 40,
+        "paddingLeft": 10,
+        "paddingRight": 10,
+        "width": "100%",
+      }
+    }
+    value=""
+  />
+</View>
+`;

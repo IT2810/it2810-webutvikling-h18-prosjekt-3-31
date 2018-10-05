@@ -7,12 +7,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "node ./node_modules/jest/bin/jest.js --watchAll",
     "test": "jest"
   },
   "jest": {
-    "preset": "jest-expo",
-    "present": "react-native"
+    "preset": "jest-expo"
   },
   "dependencies": {
     "@expo/samples": "2.1.1",

@@ -110,7 +110,6 @@ let Tasks = {
     return callback(
       tasks ? tasks.split("||").map((task, i) => ({ key: i, text: task })) : []
     );
-    console.log(tasks)
   },
   convertToStringWithSeparators(tasks) {
     return tasks.map(task => task.text).join("||");
