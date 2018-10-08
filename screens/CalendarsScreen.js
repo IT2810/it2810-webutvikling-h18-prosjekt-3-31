@@ -8,92 +8,78 @@ import { AppRegistry, Button } from 'react-native';
 import { View, Text } from 'native-base';
 import { AsyncStorage } from "react-native"
 
-
-const appointment1 = {"appointment": "Hello there person",
-                    "dateString": "2017-05-16",
-                    "day": 2,
-                    "month": 10,
-                    "timestamp": 1538478110000,
-                    "year": 2018
-                    };
-const appointment2 = {"appointment": "WHAT!?",
-                    "dateString": "2017-05-20",
-                    "day": 20,
-                    "month": 10,
-                    "timestamp": 1539687710000,
-                    "year": 2018
-                    };
-const appointment3 = {"appointment": "WHAT!?",
-                    "dateString": "2017-05-10",
-                    "day": 10,
-                    "month": 10,
-                    "timestamp": 1539174795000,
-                    "year": 2018
-                    };
-const appointment4 = {"appointment": "WHAT!?",
-                    "dateString": "2017-05-07",
-                    "day": 7,
-                    "month": 10,
-                    "timestamp": 1538915595000,
-                    "year": 2018
-                    };
-
-
 export default class CalendarsScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {items: {}};
+    this.state = {items: {}, getStorage: false};
     this.addItems.bind(this)
     let day = 'nothing'
-    let retrievekey = 0
-    let storekey = 0
-    
   }
 
   static navigationOptions = { header: null } 
   //
+
+  //After mounting set props.
+  componentWillMount(){
+    this.getKeys();
+      }
+
   componentDidMount(){
     const { navigation } = this.props;
     const day = navigation.getParam('day', 'nothing');
     console.log(day);
-    /*if (this.retrievekey == null){
-      this.retrievekey = 0;
-    }
-    while (this.getKey(this.retrievekey) != null){
-      
-      this.getKey(this.retrievekey).then(value => {this.addItems(value)});
-      this.retrievekey = this.retrievekey + 1;
-    }
-    this.storekey = this.retrievekey + 1;
-  */
+    
   }
-
-  
+  // If this.day is different than param passed from formscreen
+  // Run componentpropshaschanged with the value from the param passed from formscreen
   componentDidUpdate(){
     if (this.day != this.props.navigation.getParam('day', 'nothing')){
       this.componentPropsHasChanged(this.props.navigation.getParam('day', 'nothing'));
       
     }
+    //update this.day to match the current param prop, to prevent running above method more than once
     this.day = this.props.navigation.getParam('day', 'nothing');
   }
-  /*
-  async getKey(retrievekey) {
+  
+  async getKeys() {
     try {
-      const value = await AsyncStorage.getItem('@Calendar:' +'Appointment' + retrievekey);
-      return value;
+      const existingAppointments = await AsyncStorage.getItem('appointments');
+      let appointments = JSON.parse(existingAppointments);
+      if ( !appointments){
+        return;
+      }
+      else{
+        console.log(appointments);
+        for (var i=0; i<appointments.length; i++){
+          this.addItems(appointments[i])
+        }
+      }
     } catch (error) {
       console.log("Error retrieving data" + error);
     }
   }
 
-  async saveKey(storekey, value) {
-    try {
-      await AsyncStorage.setItem('@Calendar:'+ 'Appointment' + storekey, JSON.stringify(value));
-    } catch (error) {
-      console.log("Error saving data" + error);
+  async saveKey(appointment) {
+    //Get items in storage
+      const existingAppointments = await AsyncStorage.getItem('appointments')
+      let newAppointment = JSON.parse(existingAppointments);
+      //Check if there are items in storage
+      if( !newAppointment ){
+        newAppointment = []
+      }
+      //Push new appointment onto list of appointments
+      newAppointment.push(appointment)
+      //save the item in storage
+      await AsyncStorage.setItem('appointments', JSON.stringify(newAppointment) )
+      .then( ()=>{
+      console.log('It was saved successfully')
+      } )
+      .catch( ()=>{
+      console.log('Error saving appointment')
+      } )
     }
-  }*/
 
+  // Create an object that can be used by addItems to add a new agenda item
   createDayObject(Appointment, date, time){
     const hour = time.toISOString().substring(11,13);
     const minutes = time.toISOString().substring(14,16);
@@ -110,11 +96,14 @@ export default class CalendarsScreen extends Component {
                     "year": year
                     };
     console.log(newDayObject);
+    this.saveKey(newDayObject);
     this.addItems(newDayObject);
-    //this.saveKey(this.storekey, newDayObject);
+    
     //this.storekey = this.storekey + 1;
 
   }
+  //Props have changed, been submitted from formscreen, check that day is a valid object
+  //If so createDayObject
   componentPropsHasChanged(day){
     if (day != 'nothing' && day != undefined){
       this.createDayObject(day.Appointment, day.date, day.time);
