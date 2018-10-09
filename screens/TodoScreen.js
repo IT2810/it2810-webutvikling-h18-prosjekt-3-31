@@ -15,6 +15,7 @@ const isAndroid = Platform.OS == "android";
 const viewPadding = 10;
 
 export default class TodoScreen extends Component {
+
   state = {
     tasks: [],
     text: ""
@@ -25,27 +26,21 @@ export default class TodoScreen extends Component {
     title: 'Your Personal Todos - You can do this!',
   };
 
-  changeTextHandler = text => {
-    this.setState({ text: text });
-  };
-
-  addTask = () => {
-    let notEmpty = this.state.text.trim().length > 0;
-
-    if (notEmpty) {
-      this.setState(
-        prevState => {
-          let { tasks, text } = prevState;
-          return {
-            tasks: tasks.concat({ key: tasks.length, text: text }),
-            text: ""
-          };
-        },
+  /* adds text to tasks 
+   * Sets text: "" so to remove it from the input-bar
+   */
+  addTask = text => {
+    if (text.trim().length > 0) {
+      this.setState({
+        tasks: [...this.state.tasks, {key: this.state.tasks.length, text: text}],
+        text: ""
+      },
         () => Tasks.save(this.state.tasks)
       );
     }
   };
 
+  // deletes the task with index i
   deleteTask = i => {
     this.setState(
       prevState => {
@@ -73,9 +68,7 @@ export default class TodoScreen extends Component {
 
   render() {
     return (
-      <View
-        style={[styles.container, { paddingBottom: this.state.viewPadding }]}
-      >
+      <View style={[styles.container, { paddingBottom: this.state.viewPadding }]} >
         <FlatList
           style={styles.list}
           data={this.state.tasks}
@@ -89,16 +82,15 @@ export default class TodoScreen extends Component {
                 <Button title="X" onPress={() => this.deleteTask(index)} />
               </View>
               <View style={styles.hr} />
-            </View>}
+            </View>
+          }
         />
         <TextInput
           style={styles.textInput}
-          onChangeText={this.changeTextHandler}
-          onSubmitEditing={this.addTask}
+          onChangeText={(text) => this.setState({ text: text })}
+          onSubmitEditing={() => this.addTask(this.state.text)}
           value={this.state.text}
           placeholder="Add Tasks"
-          returnKeyType="done"
-          returnKeyLabel="done"
         />
       </View>
     );
@@ -124,6 +116,7 @@ let Tasks = {
   }
 };
 
+// Style
 const styles = StyleSheet.create({
   container: {
     flex: 1,
