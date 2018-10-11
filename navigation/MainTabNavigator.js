@@ -6,6 +6,8 @@ import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TodoScreen from '../screens/TodoScreen';
 import CalendarsScreen from '../screens/CalendarsScreen';
+import FormScreen from '../screens/FormScreen';
+
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -27,9 +29,16 @@ HomeStack.navigationOptions = {
 
 const CalendarStack = createStackNavigator({
   Calendar: CalendarsScreen,
-});
+  Form: FormScreen,
+  
+  },
+  {
+    initialRouteName: 'Calendar',
+  }
+);
 
 CalendarStack.navigationOptions = {
+  headerVisible: false,
   tabBarLabel: 'Calendar',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
