@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1539003561421" clover="3.2.0">
+  <project timestamp="1539003561421" name="All files">
+    <metrics statements="86" coveredstatements="50" conditionals="42" coveredconditionals="26" methods="43" coveredmethods="20" elements="171" coveredelements="96" complexity="0" loc="86" ncloc="86" packages="7" files="13" classes="13">
+      <package name="it2810-webutvikling-h18-prosjekt-3-31">
+        <metrics statements="7" coveredstatements="6" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="3"/>
+        <file name="App.js" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/App.js">
+          <metrics statements="7" coveredstatements="6" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="3"/>
+          <line num="12" count="3" type="cond" truecount="4" falsecount="0"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="21" count="2" type="stmt"/>
+          <line num="31" count="1" type="stmt"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="57" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="it2810-webutvikling-h18-prosjekt-3-31.assets.fonts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="SpaceMono-Regular.ttf" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/assets/fonts/SpaceMono-Regular.ttf">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="it2810-webutvikling-h18-prosjekt-3-31.assets.images">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="robot-dev.png" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/assets/images/robot-dev.png">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+        </file>
+        <file name="robot-prod.png" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/assets/images/robot-prod.png">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="it2810-webutvikling-h18-prosjekt-3-31.components">
+        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <file name="StyledText.js" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/components/StyledText.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="6" count="3" type="stmt"/>
+        </file>
+        <file name="TabBarIcon.js" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/components/TabBarIcon.js">
+          <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="8" count="16" type="stmt"/>
+        </file>
+      </package>
+      <package name="it2810-webutvikling-h18-prosjekt-3-31.constants">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="Colors.js" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/constants/Colors.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="it2810-webutvikling-h18-prosjekt-3-31.navigation">
+        <metrics statements="12" coveredstatements="12" conditionals="16" coveredconditionals="12" methods="4" coveredmethods="4"/>
+        <file name="AppNavigator.js" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/navigation/AppNavigator.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="MainTabNavigator.js" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/navigation/MainTabNavigator.js">
+          <metrics statements="12" coveredstatements="12" conditionals="16" coveredconditionals="12" methods="4" coveredmethods="4"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="17" count="4" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="35" count="4" type="stmt"/>
+          <line num="44" count="1" type="stmt"/>
+          <line num="48" count="1" type="stmt"/>
+          <line num="51" count="4" type="stmt"/>
+          <line num="61" count="1" type="stmt"/>
+          <line num="65" count="1" type="stmt"/>
+          <line num="68" count="4" type="stmt"/>
+        </file>
+      </package>
+      <package name="it2810-webutvikling-h18-prosjekt-3-31.screens">
+        <metrics statements="61" coveredstatements="26" conditionals="18" coveredconditionals="6" methods="33" coveredmethods="11"/>
+        <file name="CalendarsScreen.js" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/screens/CalendarsScreen.js">
+          <metrics statements="23" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="0"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="50" count="0" type="stmt"/>
+          <line num="51" count="0" type="stmt"/>
+          <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="53" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="55" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="64" count="0" type="stmt"/>
+          <line num="65" count="0" type="stmt"/>
+          <line num="66" count="0" type="stmt"/>
+          <line num="74" count="0" type="stmt"/>
+          <line num="80" count="0" type="stmt"/>
+          <line num="86" count="0" type="stmt"/>
+          <line num="92" count="0" type="stmt"/>
+          <line num="96" count="0" type="stmt"/>
+          <line num="97" count="0" type="stmt"/>
+          <line num="102" count="1" type="stmt"/>
+        </file>
+        <file name="HomeScreen.js" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/screens/HomeScreen.js">
+          <metrics statements="8" coveredstatements="5" conditionals="4" coveredconditionals="2" methods="4" coveredmethods="2"/>
+          <line num="21" count="2" type="stmt"/>
+          <line num="68" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="70" count="2" type="stmt"/>
+          <line num="75" count="2" type="stmt"/>
+          <line num="82" count="0" type="stmt"/>
+          <line num="91" count="0" type="stmt"/>
+          <line num="95" count="0" type="stmt"/>
+          <line num="101" count="1" type="stmt"/>
+        </file>
+        <file name="SettingsScreen.js" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/screens/SettingsScreen.js">
+          <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="12" count="0" type="stmt"/>
+        </file>
+        <file name="TodoScreen.js" path="/Users/bruker/Documents/Skole/NTNU/3.KlasseHøst/Webutvikling/it2810-webutvikling-h18-prosjekt-3-31/screens/TodoScreen.js">
+          <metrics statements="29" coveredstatements="20" conditionals="12" coveredconditionals="4" methods="18" coveredmethods="9"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="32" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="33" count="2" type="stmt"/>
+          <line num="37" count="2" type="stmt"/>
+          <line num="44" count="1" type="stmt"/>
+          <line num="46" count="1" type="stmt"/>
+          <line num="47" count="1" type="stmt"/>
+          <line num="48" count="1" type="stmt"/>
+          <line num="50" count="1" type="stmt"/>
+          <line num="55" count="4" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="60" count="4" type="stmt"/>
+          <line num="62" count="0" type="stmt"/>
+          <line num="65" count="4" type="cond" truecount="0" falsecount="2"/>
+          <line num="69" count="7" type="stmt"/>
+          <line num="74" count="2" type="stmt"/>
+          <line num="76" count="0" type="stmt"/>
+          <line num="81" count="0" type="stmt"/>
+          <line num="89" count="0" type="stmt"/>
+          <line num="90" count="0" type="stmt"/>
+          <line num="99" count="2" type="stmt"/>
+          <line num="101" count="0" type="stmt"/>
+          <line num="102" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="106" count="3" type="stmt"/>
+          <line num="109" count="4" type="stmt"/>
+          <line num="110" count="0" type="stmt"/>
+          <line num="114" count="3" type="stmt"/>
+          <line num="118" count="2" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

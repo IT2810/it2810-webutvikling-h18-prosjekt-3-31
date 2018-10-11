@@ -1,174 +1,169 @@
-import React from 'react';
+import React, { Component } from "react";
 import {
-  Image,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
-} from 'react-native';
-import { WebBrowser } from 'expo';
+  FlatList,
+  AsyncStorage,
+  Button,
+  TextInput,
+  Keyboard,
+  Platform
+} from "react-native";
 
-import { MonoText } from '../components/StyledText';
+/* Test for specific os */
+const isAndroid = Platform.OS == "android";
+const viewPadding = 10;
 
-export default class TodoScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
+export default class TodoScreen extends Component {
+
+  state = {
+    tasks: [],
+    text: ""
   };
+
+  /* The title of the screen */
+  static navigationOptions = {
+    title: 'Your Personal Todos - You can do this!',
+  };
+
+  /* adds text to tasks 
+   * Sets text: "" so to remove it from the input-bar
+   * Saves the task in tasks with async in setState, so we save it each time the state changes, and avoids
+   * saving old data
+   */
+  addTask = text => {
+    if (text.trim().length > 0) {
+      this.setState({
+        tasks: [...this.state.tasks, {key: this.state.tasks.length, text: text}],
+        text: ""
+      },
+        () => TasksStorage.save(this.state.tasks)
+      );
+    }
+  };
+
+  /* deletes the task with index i */
+  deleteTask = i => {
+    this.setState(
+      prevState => {
+        let tasks = prevState.tasks.slice();
+        tasks.splice(i, 1);
+        return { tasks: tasks };
+      },
+      () => TasksStorage.save(this.state.tasks)
+    );
+  };
+
+  /* When the keybord shows we change the paddingBottom, so the input shows above the keyboard */
+  componentDidMount() {
+    Keyboard.addListener(
+      isAndroid ? "keyboardDidShow" : "keyboardWillShow",
+      e => this.setState({ viewPadding: e.endCoordinates.height + viewPadding })
+    );
+    /* When the keyboard is gone, we change the paddingBottom back to the original value*/
+    Keyboard.addListener(
+      isAndroid ? "keyboardDidHide" : "keyboardWillHide",
+      () => this.setState({ viewPadding: viewPadding })
+    );
+    /* After the component it mounted, we load the tasks from localStorage*/
+    TasksStorage.all(tasks => this.setState({ tasks: tasks || [] }));
+  }
 
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
-
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Nothing to do</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
+      <View style={[styles.container, { paddingBottom: this.state.viewPadding }]} >
+        <FlatList   //The task-list
+          style={styles.list}
+          data={this.state.tasks} //The array of tasks
+          keyExtractor = { (item, index) => index.toString() }
+          renderItem={({ item, index }) =>
+            <View>
+              <View style={styles.listItemCont}>
+                <Text style={styles.listItem}>
+                  {item.text}
+                </Text>
+                <Button title=" X " onPress={() => this.deleteTask(index)} color="#C39B17" />  
+              </View>
+              <View style={styles.hr} />
             </View>
-
-            <Text style={styles.getStartedText}>
-              Press somewhere to add something to do
-            </Text>
-          </View>
-        </ScrollView>
+          }
+        />
+        <TextInput //Input to add task
+          style={styles.textInput}
+          onChangeText={(text) => this.setState({ text: text })}
+          onSubmitEditing={() => this.addTask(this.state.text)}
+          value={this.state.text}
+          placeholder="Add Tasks"
+          returnKeyType="done"
+          returnKeyLabel="done"
+          maxLength={30}
+        />
       </View>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
 
+/* ConvertToArrayOfObject() and convertToStringWithSeparators(): serialize the string with separator "||",
+ * then deserialize it to retrieve it
+ * all() and save(): saves the data locally with AsyncStorage
+ */
+let TasksStorage = {
+  convertToArrayOfObject(tasks, callback) {
+    return callback(
+      tasks ? tasks.split("||").map((task, i) => ({ key: i, text: task })) : []
+    );
+  },
+  convertToStringWithSeparators(tasks) {
+    return tasks.map(task => task.text).join("||");
+  },
+  all(callback) {
+    return AsyncStorage.getItem('TASKS', (err, tasks) =>
+      this.convertToArrayOfObject(tasks, callback)
+    );
+  },
+  save(tasks) {
+    AsyncStorage.setItem('TASKS', this.convertToStringWithSeparators(tasks));
+  }
+};
+
+/* Styling */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFF8E3",
+    padding: viewPadding,
+    paddingTop: 20,
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
+  list: {
+    width: "100%"
   },
-  contentContainer: {
-    paddingTop: 30,
+  listItem: {
+    paddingTop: 2,
+    paddingBottom: 2,
+    fontSize: 18,
+    paddingRight: 15,
   },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
+  hr: {
+    height: 1,
+    backgroundColor: "#F0D57A"
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
+  listItemCont: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
   },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+  textInput: {
+    height: 40,
+    paddingRight: 10,
+    paddingLeft: 10,
+    borderColor: "#EFCE63",
+    borderWidth: isAndroid ? 0 : 1,
+    width: "100%"
   },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+  button: {
+    color: "#841584"
+  }
 });
