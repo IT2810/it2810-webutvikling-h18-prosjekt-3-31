@@ -4,65 +4,50 @@ import { Text, View, StyleSheet, TextInput, ScrollView} from 'react-native';
 
 export default class MapScreen extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      mapRegion:null,
+      locationResult: null,
+      places: ",",
+      // location: {coords: { latitude:  63.431593, longitude:  10.394109}},
+    };
+  }
+
   static navigationOptions = {
     title: 'Map',
   };
 
-  state = {
-    mapRegion:null,
-    locationResult: null,
-    places: ",",
-    // location: {coords: { latitude:  63.431593, longitude:  10.394109}},
-  };
 
   componentDidMount() {
     this._getLocationAsync();
   }
 
   _handleMapRegionChange = mapRegion => {
-    // console.log(mapRegion);
     this.setState({ mapRegion });
   };
-
-  _handlePlacesChange(newText) {
-     console.log(newText);
-
-    // this.setState({places: this.state.places.concat("||", String(newText))});
-  }
-
   
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
-      this.setState({
-        locationResult: 'Permission to access location was denied',
-      });
-    } else {
-      this.setState({ hasLocationPermissions: true });
-    }
+      this.setState({ locationResult: 'Permission to access location was denied' });
+    } else { this.setState({ hasLocationPermissions: true });    }
  
     let location = await Location.getCurrentPositionAsync({});
     this.setState({ locationResult: JSON.stringify(location) });
     
     // Center the map on the location we just fetched.
      this.setState({mapRegion: 
-                        { 
-                          latitude: location.coords.latitude, 
+                        { latitude: location.coords.latitude, 
                           longitude: location.coords.longitude, 
                           latitudeDelta: 0.0522, 
                           longitudeDelta: 0.0321
-                        }
-                    });
+                        }});
    };
-   
-   
-
+  
   render() {
     return(
       <View style={allStyles.cont}>
-        {/* <Text style={allStyles.miniTitle} >
-         This map shows you your area!!
-        </Text> */}
         
         <MapView
           style={allStyles.map}
@@ -70,17 +55,11 @@ export default class MapScreen extends React.Component {
           initialRegion={{ // sets the focuson trd
             latitude: 63.431593, 
             longitude: 10.394109, 
-            latitudeDelta: 0.0522, 
-            longitudeDelta: 0.0321
+            latitudeDelta: 0.0422, 
+            longitudeDelta: 0.0221
           }}
           onRegionChange={this._handleMapRegionChange}
         >
-        {/* Fixme: does not show  accurate enough to actually use? - not using it*/}
-        {/* <MapView.Marker   
-          coordinate={this.state.locationResult.coords}
-          title="You are here!"
-          description="This is where you are according to your location data"
-        /> */}
 
         <MapView.Marker
               coordinate={{latitude: 63.417037, longitude: 10.403093 }}
@@ -89,30 +68,28 @@ export default class MapScreen extends React.Component {
           />
         </MapView>
 
-        <Text style={allStyles.cities}>
+        {/* <Text style={allStyles.cities}>
           placed to go and thing to seee
-        </Text>
+        </Text> */}
 
-{/* TODO: skrive tester forst, dette kan vente
-        <ScrollView style={{padding:10}}>
+        {/* TODO: skrive tester forst, dette kan vente */}
+        {/* <ScrollView style={{padding:10}}>
 
           <TextInput
-            // style={allStyles.txtIn}
             style={allStyles.txtIn}
-            placeholder="List places you want to go!)"
-            onChangeText={(text) => this.setState({text})}
+            placeholder="List places you want to go!"
+            onSubmitEditing={(places) => this.setState({places})}
           />
             <Text style={allStyles.cities}>
-              {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}          
+              {this.state.places}          
             </Text>
 
-          </ScrollView>
-*/}
+          </ScrollView> */}
+
       </View>
     );
   }
 }
-// https://snack.expo.io/@schazers/expo-map-and-location-example
 
 const allStyles = StyleSheet.create({
   cont: {
