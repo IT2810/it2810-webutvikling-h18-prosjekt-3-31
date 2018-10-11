@@ -1,86 +1,114 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
-import {Agenda} from 'react-native-calendars';
-import { AppRegistry, Button } from 'react-native';
-import { View, Text } from 'native-base';
-import { AsyncStorage } from "react-native"
+import { StyleSheet, ScrollView, AsyncStorage, Button, View, Text } from 'react-native';
+import { Agenda } from 'react-native-calendars';
+
 
 export default class CalendarsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {items: {}, getStorage: false};
     this.addItems.bind(this)
-    let day = 'nothing'
+    this.day = 'nothing';
   }
 
   static navigationOptions = { header: null } 
   //
 
-  //After mounting set props.
+  //before mounting check local storage for appointments. 
   componentWillMount(){
     this.getKeys();
-      }
-
-  componentDidMount(){
-    const { navigation } = this.props;
-    const day = navigation.getParam('day', 'nothing');
-    console.log(day);
-    
   }
   // If this.day is different than param passed from formscreen
   // Run componentpropshaschanged with the value from the param passed from formscreen
   componentDidUpdate(){
-    if (this.day != this.props.navigation.getParam('day', 'nothing')){
-      this.componentPropsHasChanged(this.props.navigation.getParam('day', 'nothing'));
-      
+    if (this.state.getStorage == true){
+      if (this.day != this.props.navigation.getParam('day', 'nothing')){
+        const newDayObject = this.componentPropsHasChanged(this.props.navigation.getParam('day', 'nothing'));
+        this.saveKey(newDayObject);
+        this.addItems(newDayObject);
+        this.day = this.props.navigation.getParam('day', 'nothing');
+      }
     }
     //update this.day to match the current param prop, to prevent running above method more than once
-    this.day = this.props.navigation.getParam('day', 'nothing');
+    
+    
   }
-  
+  //ASyncStorage gets all appointments from local storage
+  //And add them to the Agenda
   async getKeys() {
     try {
       const existingAppointments = await AsyncStorage.getItem('appointments');
       let appointments = JSON.parse(existingAppointments);
-      if ( !appointments){
+      console.log(appointments);
+      if (!appointments || appointments == null || appointments == 'null'){
+        this.setState({getStorage: true});
         return;
+        
       }
       else{
-        console.log(appointments);
         for (var i=0; i<appointments.length; i++){
           this.addItems(appointments[i])
         }
+        this.setState({getStorage: true});
       }
     } catch (error) {
       console.log("Error retrieving data" + error);
+      this.setState({getStorage: true});
+    }
+  }
+  async removeItemValue() {
+    console.log("goodbye items");
+    try {
+      await AsyncStorage.removeItem('appointments');
+      return true;
+    }
+    catch(exception) {
+      return false;
     }
   }
 
+
+  //ASyncStorage component, stores appointment
   async saveKey(appointment) {
     //Get items in storage
       const existingAppointments = await AsyncStorage.getItem('appointments')
       let newAppointment = JSON.parse(existingAppointments);
       //Check if there are items in storage
-      if( !newAppointment ){
+      if( !newAppointment || newAppointment == null || newAppointment == 'null' ){
         newAppointment = []
       }
       //Push new appointment onto list of appointments
-      newAppointment.push(appointment)
-      //save the item in storage
-      await AsyncStorage.setItem('appointments', JSON.stringify(newAppointment) )
-      .then( ()=>{
-      console.log('It was saved successfully')
-      } )
-      .catch( ()=>{
-      console.log('Error saving appointment')
-      } )
+      if (appointment != false){
+        newAppointment.push(appointment)
+        //save the item in storage
+        await AsyncStorage.setItem('appointments', JSON.stringify(newAppointment) )
+        .then( ()=>{
+        console.log('It was saved successfully')
+        } )
+        .catch( ()=>{
+        console.log('Error saving appointment')
+        } )
+      }
     }
 
   // Create an object that can be used by addItems to add a new agenda item
+  // Takes in an Appointment (String such as "Webutvikling frist")
+  // Date in a Date object (usually on the form of 2018-10-19T13:36:00.000Z for 19October 2018)
+  // Time in a date objecdt (usually on the form of 2018-10-09T10:00:24.181Z for 12:00 (disregard of gmt time, date part is ignored in the function))
+  //This input would result in the following dayObject
+  /*
+  Object {
+      "appointment": "Webutvikling frist",
+      "dateString": "2018-10-19",
+      "day": "19",
+      "month": "10",
+      "timestamp": 1539849624001,
+      "year": "2018",
+      }
+  */
   createDayObject(Appointment, date, time){
+    console.log(date);
+    console.log(time);
     const hour = time.toISOString().substring(11,13);
     const minutes = time.toISOString().substring(14,16);
     const seconds = time.toISOString().substring(17,19);
@@ -96,8 +124,7 @@ export default class CalendarsScreen extends Component {
                     "year": year
                     };
     console.log(newDayObject);
-    this.saveKey(newDayObject);
-    this.addItems(newDayObject);
+    return newDayObject;
     
     //this.storekey = this.storekey + 1;
 
@@ -106,37 +133,12 @@ export default class CalendarsScreen extends Component {
   //If so createDayObject
   componentPropsHasChanged(day){
     if (day != 'nothing' && day != undefined){
-      this.createDayObject(day.Appointment, day.date, day.time);
-      
+      const newdayObject = this.createDayObject(day.Appointment, day.date, day.time);
+      return newdayObject;
     }
-  }
-
-  render() {
-    
-    return (
-      <View>
-      <ScrollView style={styles.container}>
-        
-        <Agenda style={styles.Agenda}
-        items={this.state.items}
-        selected={'2018-10-03'}
-        renderItem={this.renderItem.bind(this)}
-        renderEmptyDate={this.renderEmptyDate.bind(this)}
-        loadItemsForMonth={this.loadItems.bind(this)}
-        rowHasChanged={this.rowHasChanged.bind(this)}
-        theme={{
-          agendaTodayColor: 'red'
-        }}
-      />
-         
-      </ScrollView>
-      <Button
-        title="New Appointment"
-        onPress={() => this.props.navigation.navigate('Form')}
-      />
-        
-      </View>
-    );
+    else{
+      return false;
+    }
   }
 
 /*
@@ -151,14 +153,14 @@ export default class CalendarsScreen extends Component {
     }
     */
     //Adds an appointment to day
-  addItems(day){
+    addItems(day){
       const time = day.timestamp + 24 * 60 * 60 * 1000;
       const strTime = this.timeToString(time);
       if (!this.state.items[strTime]) {
         this.state.items[strTime] = [];
         this.state.items[strTime].push({
           name: day.appointment + ' ' + strTime,
-          height: Math.max(50, Math.floor(Math.random() * 150))
+          height: 50
         });
         const newItems = {};
           Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
@@ -169,7 +171,7 @@ export default class CalendarsScreen extends Component {
       else{
         this.state.items[strTime].push({
           name: day.appointment + ' ' + strTime,
-          height: Math.max(50, Math.floor(Math.random() * 150))
+          height: 50
         });
         const newItems = {};
         Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
@@ -236,23 +238,39 @@ export default class CalendarsScreen extends Component {
     var milliseconds = (new Date(year, month - 1, day - 1, hours, minutes, seconds, milliseconds)).getTime();
     return milliseconds;
   }
+
+  render() {
+    
+    return (
+      <View>
+      <ScrollView style={styles.container}>
+        
+        <Agenda style={styles.Agenda}
+        items={this.state.items}
+        selected={'2018-10-03'}
+        renderItem={this.renderItem.bind(this)}
+        renderEmptyDate={this.renderEmptyDate.bind(this)}
+        loadItemsForMonth={this.loadItems.bind(this)}
+        rowHasChanged={this.rowHasChanged.bind(this)}
+        theme={{
+          agendaTodayColor: 'red'
+        }}
+      />
+         
+      </ScrollView>
+      <Button
+        title="New Appointment"
+        onPress={() => this.props.navigation.navigate('Form')}
+      />
+        
+      </View>
+    );
+  }
 }
 
 
 const styles = StyleSheet.create({
-  calendar: {
-    borderTopWidth: 1,
-    paddingTop: 5,
-    borderBottomWidth: 1,
-    borderColor: '#eee',
-    height: 350
-  },
-  text: {
-    textAlign: 'center',
-    borderColor: '#bbb',
-    padding: 10,
-    backgroundColor: '#eee'
-  },
+
   container: {
     backgroundColor: 'white',
     paddingTop: 23,
@@ -274,12 +292,4 @@ const styles = StyleSheet.create({
     flex:1,
     paddingTop: 30
   },
-  wrapper: {
-    flex: 1,
-    marginTop: 150,
-  },
-  Button: {
-    paddingHorizontal: 0,
-    paddingTop: 0,
-  }
 });

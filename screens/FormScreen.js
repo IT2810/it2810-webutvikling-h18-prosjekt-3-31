@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
-import { AppRegistry } from 'react-native';
-import { View, Text, Button } from 'native-base';
+import { StyleSheet, AppRegistry } from 'react-native';
 import GenerateForm from 'react-native-form-builder';
 import { Font, AppLoading } from "expo";
+import { Button, View, Text } from 'native-base';
 
 const fields = [
     {
@@ -36,6 +32,9 @@ export default class FormScreen extends Component {
         
       }
 
+      //Problem with formscreen loading before fonts, causing errors
+      //This loads them in and changes state afterwards, rerendering the screen
+      //with the forms
     async componentWillMount() {
       await Font.loadAsync({
         Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -44,6 +43,8 @@ export default class FormScreen extends Component {
       this.setState({ loading: false });
     }
     
+
+    // Get formvalues and return them
     newAppointment() {
       const formValues = this.FormScreen.getValues();
       //console.log('FORM VALUES', formValues);
