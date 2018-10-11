@@ -11,6 +11,7 @@ import {
   Platform
 } from "react-native";
 
+/* Test for specific os */
 const isAndroid = Platform.OS == "android";
 const viewPadding = 10;
 
@@ -21,13 +22,15 @@ export default class TodoScreen extends Component {
     text: ""
   };
 
-  // The title of the screen
+  /* The title of the screen */
   static navigationOptions = {
     title: 'Your Personal Todos - You can do this!',
   };
 
   /* adds text to tasks 
    * Sets text: "" so to remove it from the input-bar
+   * Saves the task in tasks with async in setState, so we save it each time the state changes, and avoids
+   * saving old data
    */
   addTask = text => {
     if (text.trim().length > 0) {
@@ -35,12 +38,12 @@ export default class TodoScreen extends Component {
         tasks: [...this.state.tasks, {key: this.state.tasks.length, text: text}],
         text: ""
       },
-        () => Tasks.save(this.state.tasks)
+        () => TasksStorage.save(this.state.tasks)
       );
     }
   };
 
-  // deletes the task with index i
+  /* deletes the task with index i */
   deleteTask = i => {
     this.setState(
       prevState => {
@@ -48,30 +51,31 @@ export default class TodoScreen extends Component {
         tasks.splice(i, 1);
         return { tasks: tasks };
       },
-      () => Tasks.save(this.state.tasks)
+      () => TasksStorage.save(this.state.tasks)
     );
   };
 
+  /* When the keybord shows we change the paddingBottom, so the input shows above the keyboard */
   componentDidMount() {
     Keyboard.addListener(
       isAndroid ? "keyboardDidShow" : "keyboardWillShow",
       e => this.setState({ viewPadding: e.endCoordinates.height + viewPadding })
     );
-
+    /* When the keyboard is gone, we change the paddingBottom back to the original value*/
     Keyboard.addListener(
       isAndroid ? "keyboardDidHide" : "keyboardWillHide",
       () => this.setState({ viewPadding: viewPadding })
     );
-
-    Tasks.all(tasks => this.setState({ tasks: tasks || [] }));
+    /* After the component it mounted, we load the tasks from localStorage*/
+    TasksStorage.all(tasks => this.setState({ tasks: tasks || [] }));
   }
 
   render() {
     return (
       <View style={[styles.container, { paddingBottom: this.state.viewPadding }]} >
-        <FlatList
+        <FlatList   //The task-list
           style={styles.list}
-          data={this.state.tasks}
+          data={this.state.tasks} //The array of tasks
           keyExtractor = { (item, index) => index.toString() }
           renderItem={({ item, index }) =>
             <View>
@@ -79,25 +83,31 @@ export default class TodoScreen extends Component {
                 <Text style={styles.listItem}>
                   {item.text}
                 </Text>
-                <Button title="X" onPress={() => this.deleteTask(index)} />
+                <Button title=" X " onPress={() => this.deleteTask(index)} />  
               </View>
               <View style={styles.hr} />
             </View>
           }
         />
-        <TextInput
+        <TextInput //Input to add task
           style={styles.textInput}
           onChangeText={(text) => this.setState({ text: text })}
           onSubmitEditing={() => this.addTask(this.state.text)}
           value={this.state.text}
           placeholder="Add Tasks"
+          returnKeyType="done"
+          returnKeyLabel="done"
         />
       </View>
     );
   }
 }
 
-let Tasks = {
+/* ConvertToArrayOfObject() and convertToStringWithSeparators(): serialize the string with separator "||",
+ * then deserialize it to retrieve it
+ * all() and save(): saves the data locally with AsyncStorage
+ */
+let TasksStorage = {
   convertToArrayOfObject(tasks, callback) {
     return callback(
       tasks ? tasks.split("||").map((task, i) => ({ key: i, text: task })) : []
@@ -116,7 +126,7 @@ let Tasks = {
   }
 };
 
-// Style
+/* Styling */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
