@@ -23,7 +23,5 @@
   "devDependencies": {
     "jest": "^23.6.0",
     "jest-expo": "30.0.0",
-    "react-dom": "^16.5.2",
-    "react-test-renderer": "^16.5.2"
   }
 }

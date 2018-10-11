@@ -37,7 +37,7 @@ CalendarStack.navigationOptions = {
       name={
         Platform.OS === 'ios' 
           ? `ios-calendar${focused ? '' : '-outline'}` 
-           : 'md-calendar'}
+           : 'ios-calendar'}
     />
   ),
 };

@@ -83,7 +83,7 @@ export default class TodoScreen extends Component {
                 <Text style={styles.listItem}>
                   {item.text}
                 </Text>
-                <Button title=" X " onPress={() => this.deleteTask(index)} />  
+                <Button title=" X " onPress={() => this.deleteTask(index)} color="#C39B17" />  
               </View>
               <View style={styles.hr} />
             </View>
@@ -97,6 +97,7 @@ export default class TodoScreen extends Component {
           placeholder="Add Tasks"
           returnKeyType="done"
           returnKeyLabel="done"
+          maxLength={30}
         />
       </View>
     );
@@ -132,9 +133,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F5FCFF",
+    backgroundColor: "#FFF8E3",
     padding: viewPadding,
-    paddingTop: 20
+    paddingTop: 20,
   },
   list: {
     width: "100%"
@@ -142,11 +143,12 @@ const styles = StyleSheet.create({
   listItem: {
     paddingTop: 2,
     paddingBottom: 2,
-    fontSize: 18
+    fontSize: 18,
+    paddingRight: 15,
   },
   hr: {
     height: 1,
-    backgroundColor: "gray"
+    backgroundColor: "#F0D57A"
   },
   listItemCont: {
     flexDirection: "row",
@@ -157,8 +159,11 @@ const styles = StyleSheet.create({
     height: 40,
     paddingRight: 10,
     paddingLeft: 10,
-    borderColor: "gray",
+    borderColor: "#EFCE63",
     borderWidth: isAndroid ? 0 : 1,
     width: "100%"
+  },
+  button: {
+    color: "#841584"
   }
 });
