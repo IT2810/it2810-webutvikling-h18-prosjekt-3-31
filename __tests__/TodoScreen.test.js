@@ -3,7 +3,8 @@ import React from 'react';
 import TodoScreen from '../screens/TodoScreen';
 import renderer from 'react-test-renderer';
 
-it('renders correctly', () => {
+
+it('renders correctly', async () => {
     const tree = renderer
         .create(< TodoScreen />)
         .toJSON();
@@ -34,16 +35,13 @@ test('Can delete task', () => {
     instance.addTask(text);
     instance.deleteTask(text);
     expect(instance.state.task).toBeUndefined();
-    //console.log(instance.state.tasks);
 });
 
-test('The button works and deletes the task', () => {
-    const TodoScreenComponent = renderer
-        .create(< TodoScreen />).root;
-    const instance = TodoScreenComponent.instance;
-    const text = "Todo";
-    instance.addTask(text);
-    console.log(instance.state.tasks);
-    const button = TodoScreenComponent.find('Button').onPress();
-    //expect(instance.state.task).toBeUndefined();
+it('TextInput can add tasks', () => {
+    const TodoScreenComponent = renderer.create(< TodoScreen />);
+    const root = TodoScreenComponent.root;
+    const instance = root.instance;
+    const text = "task"
+    root.findByType('TextInput').props.onSubmitEditing(instance.addTask(text));
+    expect(instance.state.tasks[0]['text']).toEqual(text);
 });

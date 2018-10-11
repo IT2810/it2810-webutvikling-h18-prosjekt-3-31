@@ -101,7 +101,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
               >
                 <View
                   accessibilityElementsHidden={false}
-                  collapsable={undefined}
                   pointerEvents="auto"
                   style={
                     Object {
@@ -221,7 +220,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                 }
               >
                 <View
-                  collapsable={undefined}
                   style={
                     Object {
                       "backgroundColor": "#FFF",
@@ -234,7 +232,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                   }
                 >
                   <View
-                    collapsable={undefined}
                     onLayout={[Function]}
                     pointerEvents="box-none"
                     style={
@@ -266,7 +263,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
       </View>
     </View>
     <View
-      collapsable={undefined}
       onLayout={[Function]}
       pointerEvents="box-none"
       style={
@@ -284,13 +280,8 @@ exports[`App snapshot renders the root without loading screen 1`] = `
       }
     >
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Home"
-        accessibilityTraits={undefined}
         accessible={true}
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -313,7 +304,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             undefined,
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -329,7 +319,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
           }
         >
           <View
-            collapsable={undefined}
             style={
               Object {
                 "alignItems": "center",
@@ -368,7 +357,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             </Text>
           </View>
           <View
-            collapsable={undefined}
             style={
               Object {
                 "alignItems": "center",
@@ -410,7 +398,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          collapsable={undefined}
           ellipsizeMode="tail"
           numberOfLines={1}
           style={
@@ -427,13 +414,8 @@ exports[`App snapshot renders the root without loading screen 1`] = `
         </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Calendar"
-        accessibilityTraits={undefined}
         accessible={true}
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -456,7 +438,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             undefined,
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -472,7 +453,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
           }
         >
           <View
-            collapsable={undefined}
             style={
               Object {
                 "alignItems": "center",
@@ -511,7 +491,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             </Text>
           </View>
           <View
-            collapsable={undefined}
             style={
               Object {
                 "alignItems": "center",
@@ -553,7 +532,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          collapsable={undefined}
           ellipsizeMode="tail"
           numberOfLines={1}
           style={
@@ -570,13 +548,8 @@ exports[`App snapshot renders the root without loading screen 1`] = `
         </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Settings"
-        accessibilityTraits={undefined}
         accessible={true}
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -599,7 +572,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             undefined,
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -615,7 +587,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
           }
         >
           <View
-            collapsable={undefined}
             style={
               Object {
                 "alignItems": "center",
@@ -654,7 +625,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             </Text>
           </View>
           <View
-            collapsable={undefined}
             style={
               Object {
                 "alignItems": "center",
@@ -696,7 +666,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          collapsable={undefined}
           ellipsizeMode="tail"
           numberOfLines={1}
           style={
@@ -713,13 +682,8 @@ exports[`App snapshot renders the root without loading screen 1`] = `
         </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Todo"
-        accessibilityTraits={undefined}
         accessible={true}
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -742,7 +706,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             undefined,
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -758,7 +721,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
           }
         >
           <View
-            collapsable={undefined}
             style={
               Object {
                 "alignItems": "center",
@@ -797,7 +759,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             </Text>
           </View>
           <View
-            collapsable={undefined}
             style={
               Object {
                 "alignItems": "center",
@@ -839,7 +800,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          collapsable={undefined}
           ellipsizeMode="tail"
           numberOfLines={1}
           style={
