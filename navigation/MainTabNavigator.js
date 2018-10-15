@@ -5,6 +5,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import TodoScreen from '../screens/TodoScreen';
 import CalendarsScreen from '../screens/CalendarsScreen';
 import FormScreen from '../screens/FormScreen';
+import MapScreen from '../screens/MapScreen';
 
 
 const CalendarStack = createStackNavigator({
@@ -30,6 +31,19 @@ CalendarStack.navigationOptions = {
     />
   ),
 };
+const MapStack = createStackNavigator({
+  Map: MapScreen,
+});
+
+MapStack.navigationOptions = {
+  tabBarLabel: 'Map',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-map${focused ? '' : '-outline'}` : 'md-map'}
+      />
+      ),
+    };
 
 const TodoStack = createStackNavigator({
   Todo: TodoScreen,
@@ -52,4 +66,5 @@ TodoStack.navigationOptions = {
 export default createBottomTabNavigator({
   CalendarStack,
   TodoStack,
+  MapStack
 });

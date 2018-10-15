@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<Component
+  style={
+    Object {
+      "backgroundColor": "#ecf0f1",
+      "flex": 1,
+    }
+  }
+>
+  <MapView
+    initialRegion={null}
+    onRegionChange={[Function]}
+    style={
+      Object {
+        "alignSelf": "stretch",
+        "flex": 1,
+      }
+    }
+  >
+    <MapMarker
+      coordinate={
+        Object {
+          "latitude": 63.417037,
+          "longitude": 10.403093,
+        }
+      }
+      description="A place to go to learn all about CS"
+      stopPropagation={false}
+      title="Department of Computer Science"
+    />
+  </MapView>
+</Component>
+`;
