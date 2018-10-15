@@ -19,12 +19,12 @@ export default class MapScreen extends React.Component {
   };
 
 
-  componentDidMount() {
+  componentWillMount() {
     this._getLocationAsync();
   }
 
-  _handleMapRegionChange = mapRegion => {
-    this.setState({ mapRegion });
+  _handleMapRegionChange = newmapRegion => {
+    this.setState({ newmapRegion });
   };
   
   _getLocationAsync = async () => {
@@ -40,56 +40,56 @@ export default class MapScreen extends React.Component {
      this.setState({mapRegion: 
                         { latitude: location.coords.latitude, 
                           longitude: location.coords.longitude, 
-                          latitudeDelta: 0.0522, 
-                          longitudeDelta: 0.0321
-                        }});
+                          latitudeDelta: 0.0322, 
+                          longitudeDelta: 0.0121
+                        }
+                      });
    };
   
   render() {
-    return(
-      <View style={allStyles.cont}>
-        
-        <MapView
-          style={allStyles.map}
-     
-          initialRegion={{ // sets the focuson trd
-            latitude: 63.431593, 
-            longitude: 10.394109, 
-            latitudeDelta: 0.0422, 
-            longitudeDelta: 0.0221
-          }}
-          onRegionChange={this._handleMapRegionChange}
-        >
+      return(
+        <View style={allStyles.cont}>
+          
+          <MapView
+            style={allStyles.map}
+      
+            initialRegion={
+              this.state.mapRegion
+                      }
+            onRegionChange={this._handleMapRegionChange}
+          >
 
-        <MapView.Marker
-              coordinate={{latitude: 63.417037, longitude: 10.403093 }}
-              title={"Department of Computer Science"}
-              description={"A place to go to learn all about CS"}
-          />
-        </MapView>
+          <MapView.Marker
+                coordinate={{latitude: 63.417037, longitude: 10.403093 }}
+                title={"Department of Computer Science"}
+                description={"A place to go to learn all about CS"}
+            />
+          </MapView>
 
-        {/* <Text style={allStyles.cities}>
-          placed to go and thing to seee
-        </Text> */}
+          {/* <Text style={allStyles.cities}>
+            placed to go and thing to seee
+          </Text> */}
 
-        {/* TODO: skrive tester forst, dette kan vente */}
-        {/* <ScrollView style={{padding:10}}>
+          {/* TODO: skrive tester forst, dette kan vente */}
+          {/* <ScrollView style={{padding:10}}>
 
-          <TextInput
-            style={allStyles.txtIn}
-            placeholder="List places you want to go!"
-            onSubmitEditing={(places) => this.setState({places})}
-          />
-            <Text style={allStyles.cities}>
-              {this.state.places}          
-            </Text>
+            <TextInput
+              style={allStyles.txtIn}
+              placeholder="List places you want to go!"
+              onSubmitEditing={(places) => this.setState({places})}
+            />
+              <Text style={allStyles.cities}>
+                {this.state.places}          
+              </Text>
 
-          </ScrollView> */}
+            </ScrollView> */}
 
-      </View>
-    );
-  }
+        </View>
+      );
+    }
 }
+
+
 
 const allStyles = StyleSheet.create({
   cont: {
@@ -109,6 +109,7 @@ const allStyles = StyleSheet.create({
 
   },
   loading:{
+    alignSelf: "center",
     textAlign: 'center',
   },
   miniTitle: {
