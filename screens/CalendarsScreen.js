@@ -1,7 +1,18 @@
 import React, {Component} from 'react';
-import { StyleSheet, ScrollView, AsyncStorage, Button, View, Text } from 'react-native';
+import { 
+  StyleSheet, 
+  ScrollView, 
+  AsyncStorage, 
+  Button, 
+  View, 
+  Text,
+  Platform 
+} from 'react-native';
 import { Agenda } from 'react-native-calendars';
 
+
+const isAndroid = Platform.OS == "android";
+const viewPadding = 10;
 
 export default class CalendarsScreen extends Component {
   constructor(props) {
@@ -248,9 +259,9 @@ export default class CalendarsScreen extends Component {
         }}
         />
       </ScrollView>
-      <Button
+      <Button style={styles.button}
         title="New Appointment"
-        onPress={() => this.props.navigation.navigate('Form')}
+        onPress={() => this.props.navigation.navigate('Form') }
       />
       </View>
     );
@@ -260,12 +271,14 @@ export default class CalendarsScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    //justifyContent: "center",
+    //alignItems: "center",
     backgroundColor: 'white',
     paddingTop: 23,
-    height: 600
+    height: 575
   },
   Agenda:{
-    height:570
+    height:545
   },
   item: {
     backgroundColor: 'white',
@@ -280,4 +293,11 @@ const styles = StyleSheet.create({
     flex:1,
     paddingTop: 30
   },
+  button: {
+    height: 40,
+    paddingRight: 10,
+    paddingLeft: 10,
+    borderWidth: isAndroid ? 0 : 1,
+    width: "100%"
+  }
 });
