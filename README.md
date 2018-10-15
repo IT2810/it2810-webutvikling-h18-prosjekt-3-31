@@ -56,9 +56,14 @@ Then run on your desired device
 * [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#mapscreen)
 
 #### CalendarsScreen
+Contains main methods for the Agenda with appointments
+Dependent on React Navigation for the stack navigator
+Implements AsyncStorage for storing appointments locally between sessions.
 
 #### TodoScreen
 
 #### FormScreen
+Contains forms for adding a new appointment to the agenda in CalendarsScreen
+Dependent on React Navigation and React Native Form Builder
 
 #### MapScreen
