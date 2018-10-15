@@ -15,13 +15,13 @@
 * Gps and map functionality
 
 ## Getting Started
-* [Installation](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#installation)
-* [Running Project](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#running-project)
+* [Installation](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#installation)
+* [Running Project](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#running-project)
 * [Components](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#components)
-  - [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#calendarsscreen)
-  - [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#todoscreen)
-  - [FormScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#formscreen)
-  - [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#mapscreen)
+  - [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#calendarsscreen)
+  - [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#todoscreen)
+  - [FormScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#formscreen)
+  - [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#mapscreen)
 * Test Coverage
 
 ## Installation
@@ -50,10 +50,10 @@ expo start
 Then run on your desired device
 
 ## Components
-* [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#calendarsscreen)
-* [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#todoscreen)
-* [FormScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#formscreen)
-* [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#mapscreen)
+* [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#calendarsscreen)
+* [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#todoscreen)
+* [FormScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#formscreen)
+* [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#mapscreen)
 
 #### CalendarsScreen
 
