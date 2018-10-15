@@ -1,5 +1,5 @@
 import React from 'react';
-import { Constants, MapView, Location, Permissions, } from 'expo';
+import { MapView, Location, Permissions, } from 'expo';
 import { Text, View, StyleSheet, TextInput, ScrollView} from 'react-native';
 
 export default class MapScreen extends React.Component {
@@ -10,7 +10,6 @@ export default class MapScreen extends React.Component {
       mapRegion:null,
       locationResult: null,
       places: ",",
-      // location: {coords: { latitude:  63.431593, longitude:  10.394109}},
     };
   }
 
@@ -21,6 +20,8 @@ export default class MapScreen extends React.Component {
 
   componentWillMount() {
     this._getLocationAsync();
+    // console.log("this.state.mapRegion");
+    // console.log(this.state.mapRegion);
   }
 
   _handleMapRegionChange = newmapRegion => {
@@ -36,7 +37,7 @@ export default class MapScreen extends React.Component {
     let location = await Location.getCurrentPositionAsync({});
     this.setState({ locationResult: JSON.stringify(location) });
     
-    // Center the map on the location we just fetched.
+    // Centers the map on the location fetched - takes abt 2000ms :/
      this.setState({mapRegion: 
                         { latitude: location.coords.latitude, 
                           longitude: location.coords.longitude, 
@@ -44,7 +45,10 @@ export default class MapScreen extends React.Component {
                           longitudeDelta: 0.0121
                         }
                       });
-   };
+    // console.log("maps");
+    // console.log(this.state.mapRegion);
+
+  };
   
   render() {
       return(
@@ -85,8 +89,9 @@ export default class MapScreen extends React.Component {
             </ScrollView> */}
 
         </View>
+      
       );
-    }
+  }
 }
 
 
@@ -99,8 +104,9 @@ const allStyles = StyleSheet.create({
 
   map: {
     alignSelf: 'stretch', 
-    height: 550,
+    // height: 550,
     // todo: change here if placed added again!
+    flex:1,
   },
   para: {
     margin: 14,
