@@ -15,8 +15,8 @@
 * Gps and map functionality
 
 ## Getting Started
-* Installation
-* Running Project
+* [Installation](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#installation)
+* [Running Project](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/develop#Running-Project)
 * Components
 * Test Coverage
 
