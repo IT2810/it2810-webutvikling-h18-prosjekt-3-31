@@ -13,3 +13,8 @@ Native Base from https://github.com/GeekyAnts/NativeBase
 * Agenda with calendar that stores appointments for dates with title and date, also allows adding new appointments
 * Todo list to add a list of things you need to do, independent of which date it is. Allows adding and removing todos.
 * Gps and map functionality
+
+## Getting Started
+* Installation
+* Components
+* Test Coverage
