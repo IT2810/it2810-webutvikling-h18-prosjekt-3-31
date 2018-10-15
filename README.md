@@ -28,7 +28,7 @@ Open cmd or terminal
 
 Run the following command
 ```
-cd path to desired directory
+cd [Path to desired directory]
 ```
 Then run
 ```
@@ -40,7 +40,7 @@ Open cmd or terminal
 
 Run the following command
 ```
-cd path to desired directory
+cd [Path to desired directory]
 expo start
 ```
 Then run on your desired device
