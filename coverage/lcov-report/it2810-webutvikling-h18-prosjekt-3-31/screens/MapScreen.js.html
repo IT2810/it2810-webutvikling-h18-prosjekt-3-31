@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30.77% </span>
+        <span class="strong">46.15% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/13</span>
+        <span class='fraction'>6/13</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40% </span>
+        <span class="strong">80% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/5</span>
+        <span class='fraction'>4/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30.77% </span>
+        <span class="strong">46.15% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/13</span>
+        <span class='fraction'>6/13</span>
       </div>
     </div>
   </div>
@@ -173,7 +173,14 @@
 128
 129
 130
-131</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+131
+132
+133
+134
+135
+136
+137
+138</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,25 +201,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -303,8 +315,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
-import { Constants, MapView, Location, Permissions, } from 'expo';
+import { MapView, Location, Permissions, } from 'expo';
 import { Text, View, StyleSheet, TextInput, ScrollView} from 'react-native';
 &nbsp;
 export default class MapScreen extends React.Component {
@@ -315,7 +329,6 @@ export default class MapScreen extends React.Component {
       mapRegion:null,
       locationResult: null,
       places: ",",
-      // location: {coords: { latitude:  63.431593, longitude:  10.394109}},
     };
   }
 &nbsp;
@@ -324,16 +337,18 @@ export default class MapScreen extends React.Component {
   };
 &nbsp;
 &nbsp;
-<span class="fstat-no" title="function not covered" >  co</span>mponentDidMount() {
-<span class="cstat-no" title="statement not covered" >    this._getLocationAsync();</span>
+  componentWillMount() {
+    this._getLocationAsync();
+    // console.log("this.state.mapRegion");
+    // console.log(this.state.mapRegion);
   }
 &nbsp;
-  _handleMapRegionChange = <span class="fstat-no" title="function not covered" >ma</span>pRegion =&gt; {
-<span class="cstat-no" title="statement not covered" >    this.setState({ mapRegion });</span>
+  _handleMapRegionChange = <span class="fstat-no" title="function not covered" >ne</span>wmapRegion =&gt; {
+<span class="cstat-no" title="statement not covered" >    this.setState({ newmapRegion });</span>
   };
   
-  _getLocationAsync = <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
-    let { status } = <span class="cstat-no" title="statement not covered" >await Permissions.askAsync(Permissions.LOCATION);</span>
+  _getLocationAsync = async () =&gt; {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
 <span class="cstat-no" title="statement not covered" >    if (status !== 'granted') {</span>
 <span class="cstat-no" title="statement not covered" >      this.setState({ locationResult: 'Permission to access location was denied' });</span>
     } else { <span class="cstat-no" title="statement not covered" >this.setState({ hasLocationPermissions: true }); </span>   }
@@ -341,60 +356,64 @@ export default class MapScreen extends React.Component {
     let location = <span class="cstat-no" title="statement not covered" >await Location.getCurrentPositionAsync({});</span>
 <span class="cstat-no" title="statement not covered" >    this.setState({ locationResult: JSON.stringify(location) });</span>
     
-    // Center the map on the location we just fetched.
+    // Centers the map on the location fetched - takes abt 2000ms :/
 <span class="cstat-no" title="statement not covered" >     this.setState({mapRegion: </span>
                         { latitude: location.coords.latitude, 
                           longitude: location.coords.longitude, 
-                          latitudeDelta: 0.0522, 
-                          longitudeDelta: 0.0321
-                        }});
-   };
+                          latitudeDelta: 0.0322, 
+                          longitudeDelta: 0.0121
+                        }
+                      });
+    // console.log("maps");
+    // console.log(this.state.mapRegion);
+&nbsp;
+  };
   
   render() {
-    return(
-      &lt;View style={allStyles.cont}&gt;
-        
-        &lt;MapView
-          style={allStyles.map}
-     
-          initialRegion={{ // sets the focuson trd
-            latitude: 63.431593, 
-            longitude: 10.394109, 
-            latitudeDelta: 0.0422, 
-            longitudeDelta: 0.0221
-          }}
-          onRegionChange={this._handleMapRegionChange}
-        &gt;
+      return(
+        &lt;View style={allStyles.cont}&gt;
+          
+          &lt;MapView
+            style={allStyles.map}
+      
+            initialRegion={
+              this.state.mapRegion
+                      }
+            onRegionChange={this._handleMapRegionChange}
+          &gt;
 &nbsp;
-        &lt;MapView.Marker
-              coordinate={{latitude: 63.417037, longitude: 10.403093 }}
-              title={"Department of Computer Science"}
-              description={"A place to go to learn all about CS"}
-          /&gt;
-        &lt;/MapView&gt;
+          &lt;MapView.Marker
+                coordinate={{latitude: 63.417037, longitude: 10.403093 }}
+                title={"Department of Computer Science"}
+                description={"A place to go to learn all about CS"}
+            /&gt;
+          &lt;/MapView&gt;
 &nbsp;
-        {/* &lt;Text style={allStyles.cities}&gt;
-          placed to go and thing to seee
-        &lt;/Text&gt; */}
+          {/* &lt;Text style={allStyles.cities}&gt;
+            placed to go and thing to seee
+          &lt;/Text&gt; */}
 &nbsp;
-        {/* TODO: skrive tester forst, dette kan vente */}
-        {/* &lt;ScrollView style={{padding:10}}&gt;
+          {/* TODO: skrive tester forst, dette kan vente */}
+          {/* &lt;ScrollView style={{padding:10}}&gt;
 &nbsp;
-          &lt;TextInput
-            style={allStyles.txtIn}
-            placeholder="List places you want to go!"
-            onSubmitEditing={(places) =&gt; this.setState({places})}
-          /&gt;
-            &lt;Text style={allStyles.cities}&gt;
-              {this.state.places}          
-            &lt;/Text&gt;
+            &lt;TextInput
+              style={allStyles.txtIn}
+              placeholder="List places you want to go!"
+              onSubmitEditing={(places) =&gt; this.setState({places})}
+            /&gt;
+              &lt;Text style={allStyles.cities}&gt;
+                {this.state.places}          
+              &lt;/Text&gt;
 &nbsp;
-          &lt;/ScrollView&gt; */}
+            &lt;/ScrollView&gt; */}
 &nbsp;
-      &lt;/View&gt;
-    );
+        &lt;/View&gt;
+      
+      );
   }
 }
+&nbsp;
+&nbsp;
 &nbsp;
 const allStyles = StyleSheet.create({
   cont: {
@@ -404,8 +423,9 @@ const allStyles = StyleSheet.create({
 &nbsp;
   map: {
     alignSelf: 'stretch', 
-    height: 550,
+    // height: 550,
     // todo: change here if placed added again!
+    flex:1,
   },
   para: {
     margin: 14,
@@ -414,6 +434,7 @@ const allStyles = StyleSheet.create({
 &nbsp;
   },
   loading:{
+    alignSelf: "center",
     textAlign: 'center',
   },
   miniTitle: {
@@ -439,7 +460,7 @@ const allStyles = StyleSheet.create({
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Oct 11 2018 17:38:40 GMT+0200 (GMT+02:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Oct 15 2018 15:49:05 GMT+0200 (GMT+02:00)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

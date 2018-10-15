@@ -10,19 +10,12 @@ exports[`renders correctly 1`] = `
   }
 >
   <MapView
-    initialRegion={
-      Object {
-        "latitude": 63.431593,
-        "latitudeDelta": 0.0422,
-        "longitude": 10.394109,
-        "longitudeDelta": 0.0221,
-      }
-    }
+    initialRegion={null}
     onRegionChange={[Function]}
     style={
       Object {
         "alignSelf": "stretch",
-        "height": 550,
+        "flex": 1,
       }
     }
   >

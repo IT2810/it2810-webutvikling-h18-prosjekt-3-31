@@ -12,9 +12,24 @@ it('renders correctly', () => {
     expect(result).toMatchSnapshot();
 });
 
-it('find-test-file', () => {
-    expect(true).toBeTruthy();
-});
+// it ('mapRegion loading', () => {
+//     const MapScreenComponent = renderer.create(<MapScreen/>).root;
+//     const instance = MapScreenComponent.instance;
+//     const mapRegionObj = { 
+//         latitude: 63.417037, 
+//         longitude: 10.403093,
+//         latitudeDelta: 0.0322, 
+//         longitudeDelta: 0.0121
+//       };
+//     instance._handleMapRegionChange(mapRegionObj);
+
+//     const strMapRegionObj =  JSON.stringify(mapRegionObj);
+//     const newMapRegion = JSON.stringify(instance.state.mapRegion)
+    
+//     expect(newMapRegion).toEqual(strMapRegionObj);
+
+// });
+
 
 
 
@@ -46,6 +61,3 @@ it('find-test-file', () => {
 
 //     // expect(1).toBe(1);
 // });
-    
-// https://www.codeworkshop.com.au/react-native-testing-expo-jest/
-// https://jestjs.io/docs/en/es6-class-mocks
