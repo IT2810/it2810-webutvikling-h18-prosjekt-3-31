@@ -6,7 +6,7 @@ exports[`renders correctly 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "#F5FCFF",
+        "backgroundColor": "#FFF8E3",
         "flex": 1,
         "justifyContent": "center",
         "padding": 10,
@@ -20,12 +20,15 @@ exports[`renders correctly 1`] = `
 >
   <TextInput
     allowFontScaling={true}
+    maxLength={30}
     onChangeText={[Function]}
     onSubmitEditing={[Function]}
     placeholder="Add Tasks"
+    returnKeyLabel="done"
+    returnKeyType="done"
     style={
       Object {
-        "borderColor": "gray",
+        "borderColor": "#EFCE63",
         "borderWidth": 1,
         "height": 40,
         "paddingLeft": 10,
