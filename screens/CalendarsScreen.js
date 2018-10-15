@@ -63,16 +63,6 @@ export default class CalendarsScreen extends Component {
       this.setState({getStorage: true});
     }
   }
-  async removeItemValue() {
-    console.log("goodbye items");
-    try {
-      await AsyncStorage.removeItem('appointments');
-      return true;
-    }
-    catch(exception) {
-      return false;
-    }
-  }
 
   //ASyncStorage component, stores appointment
   async saveKey(appointment) {
@@ -207,6 +197,7 @@ export default class CalendarsScreen extends Component {
     // console.log(`Load Items for ${day.year}-${day.month}`);
   }
 
+  //Changes which day is focused, and where the agenda should start from
   onDayPress(day) {
     this.setState({
       selected: day.dateString
@@ -231,6 +222,7 @@ export default class CalendarsScreen extends Component {
     return r1.name !== r2.name;
   }
 
+  
   timeToString(time) {
     const date = new Date(time);
     return date.toISOString().split('T')[0];
