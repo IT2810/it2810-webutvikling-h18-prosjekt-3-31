@@ -275,10 +275,11 @@ const styles = StyleSheet.create({
     //alignItems: "center",
     backgroundColor: 'white',
     paddingTop: 23,
-    height: 575
+    height: isAndroid ? 600 : 575
+    
   },
   Agenda:{
-    height:545
+    height: isAndroid ? 570 : 545
   },
   item: {
     backgroundColor: 'white',
