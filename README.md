@@ -56,7 +56,7 @@ Then run on your desired device
 * [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#mapscreen)
 
 #### CalendarsScreen
-Contains main methods for the Agenda with appointments
+Contains the Agenda with appointments
 Dependent on React Navigation for the stack navigator
 Implements AsyncStorage for storing appointments locally between sessions.
 
