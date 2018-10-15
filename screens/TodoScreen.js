@@ -11,7 +11,7 @@ import {
   Platform
 } from "react-native";
 
-/* Test for specific os */
+/* Checks if the platform is android, true if android, false if not */
 const isAndroid = Platform.OS == "android";
 const viewPadding = 10;
 

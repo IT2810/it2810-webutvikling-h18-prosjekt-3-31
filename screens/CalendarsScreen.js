@@ -10,9 +10,8 @@ import {
 } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 
-
+// Checks if the platform is android, true if android, false if not
 const isAndroid = Platform.OS == "android";
-const viewPadding = 10;
 
 export default class CalendarsScreen extends Component {
   constructor(props) {
@@ -271,8 +270,6 @@ export default class CalendarsScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    //justifyContent: "center",
-    //alignItems: "center",
     backgroundColor: 'white',
     paddingTop: 23,
     height: isAndroid ? 600 : 575
@@ -294,11 +291,4 @@ const styles = StyleSheet.create({
     flex:1,
     paddingTop: 30
   },
-  button: {
-    height: 40,
-    paddingRight: 10,
-    paddingLeft: 10,
-    borderWidth: isAndroid ? 0 : 1,
-    width: "100%"
-  }
 });
