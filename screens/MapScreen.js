@@ -21,7 +21,7 @@ export default class MapScreen extends React.Component {
       longitude: LONGITUDE,
     };
   }
-
+// title of screen
   static navigationOptions = {
     title: 'Map',
   };
@@ -33,10 +33,12 @@ export default class MapScreen extends React.Component {
     // console.log(this.state.mapRegion);
   }
 
+  // allowes users to pan and zoom the map
   _handleMapRegionChange = newmapRegion => {
     this.setState({ newmapRegion });
   };
   
+  // setes the coordinate for the map marker, after having loaded loacation, the maker should be different from the map center
   componentWillUpdate(){
     if (this.state.finishedLoading){
       if (this.state.latitude != this.state.mapRegion.latitude && this.state.longitude != this.state.mapRegion.longitude){
@@ -49,6 +51,7 @@ export default class MapScreen extends React.Component {
     }
   }
 
+  // loades the user location, runs on startup
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
@@ -58,7 +61,7 @@ export default class MapScreen extends React.Component {
     let location = await Location.getCurrentPositionAsync({});
     this.setState({ locationResult: JSON.stringify(location) });
     
-    // Centers the map on the location fetched - takes abt 2000ms :/
+    // sets intial coordinates, will be same for region and marker
      this.setState({mapRegion: 
                         { latitude: location.coords.latitude, 
                           longitude: location.coords.longitude, 
@@ -80,20 +83,16 @@ export default class MapScreen extends React.Component {
       return(
         <View style={allStyles.cont}>
 
-        <Text style= {allStyles.loading}>
-          Getting your location...
-        </Text>
+          <Text style= {allStyles.loading}>
+            Getting your location...
+          </Text>
           
           <MapView
-            style={allStyles.map}
-      
-            initialRegion={
-              this.state.mapRegion
-                      }
-            onRegionChange={this._handleMapRegionChange}
-          >
+              style={allStyles.map}
+              initialRegion={this.state.mapRegion}
+              onRegionChange={this._handleMapRegionChange}
+            >
           </MapView>
-
         </View>
       
       );
@@ -104,25 +103,20 @@ export default class MapScreen extends React.Component {
           
           <MapView
             style={allStyles.map}
-      
-            initialRegion={
-              this.state.mapRegion
-                      }
+            initialRegion={this.state.mapRegion}
             onRegionChange={this._handleMapRegionChange}
           >
 
           <MapView.Marker
                 coordinate={{latitude: this.state.latitude, longitude: this.state.longitude }}
-                title={"You"}
-                description={"Yes you"}
+                title={"You are here!"}
+                // description={"Yes you"}
             />
           </MapView>
-
         </View>
       
       );
-    }
-      
+    }   
   }
 }
 
@@ -138,32 +132,11 @@ const allStyles = StyleSheet.create({
     alignSelf: 'stretch', 
     flex:1,
   },
-  para: {
-    margin: 14,
-    fontSize: 14,
-    color: '#34495e',
-
-  },
   loading:{
     alignSelf: "center",
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: 'bold',
     color: '#34495e',
   },
-  // miniTitle: {
-  //   margin: 12,
-  //   fontSize: 18,
-  //   fontWeight: 'bold',
-  //   textAlign: 'center',
-  //   color: '#34495e',
-  // },
-  // txtIn: {
-  //   fontSize: 12, 
-  //   height: 50,
-  //   fontSize: 18,
-  // },
-  // cities: { 
-  //   padding: 5,
-  //   fontSize: 20},
-
 });
