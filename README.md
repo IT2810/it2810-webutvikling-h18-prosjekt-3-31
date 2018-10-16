@@ -10,6 +10,8 @@
 
 [React Navigation](https://github.com/react-navigation/react-navigation)
 
+[React Native Maps](https://github.com/react-community/react-native-maps)
+
 ## Features
 
 * Agenda with calendar that stores appointments for dates with title and date, also allows adding new appointments
@@ -71,6 +73,8 @@ Contains forms for adding a new appointment to the agenda in CalendarsScreen
 Dependent on React Navigation and React Native Form Builder
 
 #### MapScreen
+Shows a map, then finds the location of the user and places a marker there. You can pan, zoom and double tap to change the view of the map, as well as tap the marker to display a small text, showing that it found your location. 
+The map is loaded using react-native-maps. 
 
 ## Technology, API, Library Choices
 * React Navigation
