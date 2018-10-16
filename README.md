@@ -80,3 +80,7 @@ Dependent on React Navigation and React Native Form Builder
 * React Native Form Builder
   - Looking up the different ways to build forms, we realized that using the base react native library to build a form would end up with a lot of code just to get the list to show right, in addition to making it harder to build a JSON object with all the forms in it. So we ended up using React Native Form Builder which could handle all of these things for us. 
 * Native Base
+
+## Sources 
+Code inspiration for the TodoScreen:
+[Codeburst](https://codeburst.io/todo-app-with-react-native-f889e97e398e)
