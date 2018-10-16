@@ -81,7 +81,8 @@ Dependent on React Navigation and React Native Form Builder
 * React Native Form Builder
   - Looking up the different ways to build forms, we realized that using the base react native library to build a form would end up with a lot of code just to get the list to show right, in addition to making it harder to build a JSON object with all the forms in it. So we ended up using React Native Form Builder which could handle all of these things for us. 
 * Native Base
-
+  - Early on we knew that our app would have to work both on Android and iOS, and that the render, buttons, icons etc. could vary widely from device to device. Therefore we ended up using Native Base, which is a sleek, ingenious and dynamic front-end framework. What is really great with NativeBase is that we could use shared UI cross-platform components, and that it fully supported any native third-party libraries out of the box.
+  
 ## Testing
 We have tested our components with Jest and "react-test-renderer". 
 
@@ -93,6 +94,12 @@ npm test
 
 #### TodoScreen
 Started to test the different functions, addTasks and deleteTasks, also made a test for the TextInput. We did not get Enzyme to work, so we chose not to test the delete-button ("X"). The button is multiple level deep in the view, and wihout Enzyme it was not possible to test it. Although, we tested the button in our app. It worked as it should here.
+
+#### CalendarsScreen
+Started first with a snapshot test, after that I systematically went through important functions, and the functions they again used.
+First I needed to test that the EpochTimeConverter worked as intended, then writing a test for CreateDayObject,
+propsHasChanged, addItems and finally onDayPress to check that the state changed when changing the selection.
+Finally I wanted to see that the items in the agenda rendered properly, both with items and empty.
 
 #### Code coverage
 
