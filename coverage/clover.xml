@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1539614755908" clover="3.2.0">
-  <project timestamp="1539614755908" name="All files">
-    <metrics statements="159" coveredstatements="104" conditionals="64" coveredconditionals="35" methods="62" coveredmethods="41" elements="285" coveredelements="180" complexity="0" loc="159" ncloc="159" packages="7" files="13" classes="13">
+<coverage generated="1539694026993" clover="3.2.0">
+  <project timestamp="1539694026993" name="All files">
+    <metrics statements="166" coveredstatements="107" conditionals="72" coveredconditionals="36" methods="63" coveredmethods="41" elements="301" coveredelements="184" complexity="0" loc="166" ncloc="166" packages="6" files="11" classes="11">
       <package name="Prosjekt3">
         <metrics statements="7" coveredstatements="6" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="3"/>
         <file name="App.js" path="C:\Users\Jack Syvertsen\Desktop\NTNU\Webutvikling\Prosjekt3\App.js">
@@ -18,17 +18,6 @@
       <package name="Prosjekt3.assets.fonts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <file name="SpaceMono-Regular.ttf" path="C:\Users\Jack Syvertsen\Desktop\NTNU\Webutvikling\Prosjekt3\assets\fonts\SpaceMono-Regular.ttf">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="1" type="stmt"/>
-        </file>
-      </package>
-      <package name="Prosjekt3.assets.images">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="robot-dev.png" path="C:\Users\Jack Syvertsen\Desktop\NTNU\Webutvikling\Prosjekt3\assets\images\robot-dev.png">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="1" type="stmt"/>
-        </file>
-        <file name="robot-prod.png" path="C:\Users\Jack Syvertsen\Desktop\NTNU\Webutvikling\Prosjekt3\assets\images\robot-prod.png">
           <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="1" count="1" type="stmt"/>
         </file>
@@ -61,16 +50,16 @@
           <line num="11" count="1" type="stmt"/>
           <line num="21" count="1" type="stmt"/>
           <line num="25" count="4" type="stmt"/>
-          <line num="34" count="1" type="stmt"/>
-          <line num="38" count="1" type="stmt"/>
-          <line num="41" count="4" type="stmt"/>
-          <line num="48" count="1" type="stmt"/>
-          <line num="52" count="1" type="stmt"/>
-          <line num="55" count="4" type="stmt"/>
+          <line num="35" count="1" type="stmt"/>
+          <line num="39" count="1" type="stmt"/>
+          <line num="42" count="4" type="stmt"/>
+          <line num="49" count="1" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="56" count="4" type="stmt"/>
         </file>
       </package>
       <package name="Prosjekt3.screens">
-        <metrics statements="137" coveredstatements="83" conditionals="44" coveredconditionals="18" methods="53" coveredmethods="33"/>
+        <metrics statements="146" coveredstatements="88" conditionals="52" coveredconditionals="19" methods="54" coveredmethods="33"/>
         <file name="CalendarsScreen.js" path="C:\Users\Jack Syvertsen\Desktop\NTNU\Webutvikling\Prosjekt3\screens\CalendarsScreen.js">
           <metrics statements="81" coveredstatements="46" conditionals="28" coveredconditionals="10" methods="23" coveredmethods="14"/>
           <line num="14" count="2" type="stmt"/>
@@ -173,20 +162,29 @@
           <line num="95" count="2" type="stmt"/>
         </file>
         <file name="MapScreen.js" path="C:\Users\Jack Syvertsen\Desktop\NTNU\Webutvikling\Prosjekt3\screens\MapScreen.js">
-          <metrics statements="13" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="4"/>
-          <line num="8" count="1" type="stmt"/>
-          <line num="9" count="1" type="stmt"/>
-          <line num="22" count="1" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="32" count="1" type="stmt"/>
-          <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
+          <metrics statements="22" coveredstatements="11" conditionals="10" coveredconditionals="1" methods="6" coveredmethods="4"/>
+          <line num="5" count="2" type="stmt"/>
+          <line num="6" count="2" type="stmt"/>
+          <line num="7" count="2" type="stmt"/>
+          <line num="8" count="2" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="31" count="1" type="stmt"/>
           <line num="37" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="54" count="1" type="stmt"/>
-          <line num="99" count="2" type="stmt"/>
+          <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="42" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="55" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="58" count="0" type="stmt"/>
+          <line num="59" count="0" type="stmt"/>
+          <line num="62" count="0" type="stmt"/>
+          <line num="77" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="78" count="1" type="stmt"/>
+          <line num="100" count="0" type="stmt"/>
+          <line num="129" count="2" type="stmt"/>
         </file>
         <file name="TodoScreen.js" path="C:\Users\Jack Syvertsen\Desktop\NTNU\Webutvikling\Prosjekt3\screens\TodoScreen.js">
           <metrics statements="29" coveredstatements="23" conditionals="12" coveredconditionals="7" methods="18" coveredmethods="12"/>
