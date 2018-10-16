@@ -10,6 +10,9 @@ export default class MapScreen extends React.Component {
       mapRegion:null,
       locationResult: null,
       places: ",",
+      finishedLoading: false,
+      latitude: 63.417037,
+      longitude: 10.403093,
     };
   }
 
@@ -28,6 +31,18 @@ export default class MapScreen extends React.Component {
     this.setState({ newmapRegion });
   };
   
+  componentWillUpdate(){
+    if (this.state.finishedLoading){
+      if (this.state.latitude != this.state.mapRegion.latitude && this.state.longitude != this.state.mapRegion.longitude){
+        this.setState({
+          latitude: this.state.mapRegion.latitude,
+          longitude: this.state.mapRegion.longitude,
+        })
+      } 
+      
+    }
+  }
+
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
@@ -43,14 +58,35 @@ export default class MapScreen extends React.Component {
                           longitude: location.coords.longitude, 
                           latitudeDelta: 0.0322, 
                           longitudeDelta: 0.0121
-                        }
-                      });
+                        },
+                    finishedLoading: true,  
+                    });
+
     // console.log("maps");
     // console.log(this.state.mapRegion);
 
   };
   
   render() {
+    if (!this.state.finishedLoading){
+      return(
+        <View style={allStyles.cont}>
+          
+          <MapView
+            style={allStyles.map}
+      
+            initialRegion={
+              this.state.mapRegion
+                      }
+            onRegionChange={this._handleMapRegionChange}
+          >
+          </MapView>
+
+        </View>
+      
+      );
+    }
+    else{
       return(
         <View style={allStyles.cont}>
           
@@ -64,33 +100,17 @@ export default class MapScreen extends React.Component {
           >
 
           <MapView.Marker
-                coordinate={{latitude: 63.417037, longitude: 10.403093 }}
-                title={"Department of Computer Science"}
-                description={"A place to go to learn all about CS"}
+                coordinate={{latitude: this.state.latitude, longitude: this.state.longitude }}
+                title={"You"}
+                description={"Yes you"}
             />
           </MapView>
-
-          {/* <Text style={allStyles.cities}>
-            placed to go and thing to seee
-          </Text> */}
-
-          {/* TODO: skrive tester forst, dette kan vente */}
-          {/* <ScrollView style={{padding:10}}>
-
-            <TextInput
-              style={allStyles.txtIn}
-              placeholder="List places you want to go!"
-              onSubmitEditing={(places) => this.setState({places})}
-            />
-              <Text style={allStyles.cities}>
-                {this.state.places}          
-              </Text>
-
-            </ScrollView> */}
 
         </View>
       
       );
+    }
+      
   }
 }
 
