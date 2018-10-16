@@ -1,6 +1,12 @@
 import React from 'react';
 import { MapView, Location, Permissions, } from 'expo';
-import { Text, View, StyleSheet, TextInput, ScrollView} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
+
+const LATITUTE = 63.417037;
+const LONGITUDE = 10.403093;
+const LATITUDE_DELTA = 0.0222;
+const LONGITUDE_DELTA = 0.0121;
+
 
 export default class MapScreen extends React.Component {
 
@@ -11,8 +17,8 @@ export default class MapScreen extends React.Component {
       locationResult: null,
       places: ",",
       finishedLoading: false,
-      latitude: 63.417037,
-      longitude: 10.403093,
+      latitude: LATITUTE,
+      longitude: LONGITUDE,
     };
   }
 
@@ -56,8 +62,8 @@ export default class MapScreen extends React.Component {
      this.setState({mapRegion: 
                         { latitude: location.coords.latitude, 
                           longitude: location.coords.longitude, 
-                          latitudeDelta: 0.0322, 
-                          longitudeDelta: 0.0121
+                          latitudeDelta: LATITUDE_DELTA, 
+                          longitudeDelta:LONGITUDE_DELTA
                         },
                     finishedLoading: true,  
                     });
@@ -71,6 +77,10 @@ export default class MapScreen extends React.Component {
     if (!this.state.finishedLoading){
       return(
         <View style={allStyles.cont}>
+
+        <Text style= {allStyles.loading}>
+          Getting your location...
+        </Text>
           
           <MapView
             style={allStyles.map}
@@ -124,8 +134,6 @@ const allStyles = StyleSheet.create({
 
   map: {
     alignSelf: 'stretch', 
-    // height: 550,
-    // todo: change here if placed added again!
     flex:1,
   },
   para: {
@@ -137,21 +145,23 @@ const allStyles = StyleSheet.create({
   loading:{
     alignSelf: "center",
     textAlign: 'center',
-  },
-  miniTitle: {
-    margin: 12,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontSize: 14,
     color: '#34495e',
   },
-  txtIn: {
-    fontSize: 12, 
-    height: 50,
-    fontSize: 18,
-  },
-  cities: { 
-    padding: 5,
-    fontSize: 20},
+  // miniTitle: {
+  //   margin: 12,
+  //   fontSize: 18,
+  //   fontWeight: 'bold',
+  //   textAlign: 'center',
+  //   color: '#34495e',
+  // },
+  // txtIn: {
+  //   fontSize: 12, 
+  //   height: 50,
+  //   fontSize: 18,
+  // },
+  // cities: { 
+  //   padding: 5,
+  //   fontSize: 20},
 
 });
