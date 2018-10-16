@@ -17,15 +17,15 @@
 * Gps and map functionality
 
 ## Getting Started
-* [Installation](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#installation)
-* [Running Project](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#running-project)
-* [Components](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#components)
-  - [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#calendarsscreen)
-  - [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#todoscreen)
-  - [FormScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#formscreen)
-  - [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#mapscreen)
-* [Test Coverage](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#Code-coverage)
-* [Techonology, API, Library Choices](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#technology-api-library-choices)
+* [Installation](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#installation)
+* [Running Project](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#running-project)
+* [Components](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#components)
+  - [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#calendarsscreen)
+  - [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#todoscreen)
+  - [FormScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#formscreen)
+  - [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#mapscreen)
+* [Test Coverage](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#Code-coverage)
+* [Techonology, API, Library Choices](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#technology-api-library-choices)
 
 ## Installation
 Follow instruction 02 and 03 for
@@ -53,10 +53,10 @@ expo start
 Then run on your desired device
 
 ## Components
-* [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#calendarsscreen)
-* [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#todoscreen)
-* [FormScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#formscreen)
-* [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#mapscreen)
+* [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#calendarsscreen)
+* [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#todoscreen)
+* [FormScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#formscreen)
+* [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#mapscreen)
 
 #### CalendarsScreen
 Contains the Agenda with appointments
@@ -98,7 +98,7 @@ Started to test the different functions, addTasks and deleteTasks, also made a t
 
 [Snapshots](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/Master/__tests__/__snapshots__)
 
-![Code Coverage](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/readme/assets/images/Test%20Coverage%20Report.jpg)
+![Code Coverage](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/assets/images/Test%20Coverage%20Report.jpg)
 
 ## Sources 
 Code inspiration for the TodoScreen:
