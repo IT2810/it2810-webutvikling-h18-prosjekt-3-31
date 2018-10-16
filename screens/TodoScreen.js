@@ -15,16 +15,17 @@ import {
 const isAndroid = Platform.OS == "android";
 const viewPadding = 10;
 
+
 export default class TodoScreen extends Component {
 
-  state = {
-    tasks: [],
-    text: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {tasks: [], text: "", counter: 0};
+  }
 
   /* The title of the screen */
   static navigationOptions = {
-    title: 'Your Personal Todos - You can do this!',
+    title: 'Your personal todos',
   };
 
   /* adds text to tasks 
@@ -45,13 +46,14 @@ export default class TodoScreen extends Component {
 
   /* deletes the task with index i */
   deleteTask = i => {
+    //(counter) => this.setState({ counter: this.state.counter + 1 });
     this.setState(
       prevState => {
         let tasks = prevState.tasks.slice();
         tasks.splice(i, 1);
-        return { tasks: tasks };
+        return { tasks: tasks, counter: prevState.counter + 1 };
       },
-      () => TasksStorage.save(this.state.tasks)
+      () => TasksStorage.save(this.state.tasks),
     );
   };
 
@@ -73,6 +75,7 @@ export default class TodoScreen extends Component {
   render() {
     return (
       <View style={[styles.container, { paddingBottom: this.state.viewPadding }]} >
+        <Text>{"You have completed " + this.state.counter + " todo(s)" }</Text> 
         <FlatList   //The task-list
           style={styles.list}
           data={this.state.tasks} //The array of tasks
@@ -126,6 +129,8 @@ let TasksStorage = {
     AsyncStorage.setItem('TASKS', this.convertToStringWithSeparators(tasks));
   }
 };
+
+
 
 /* Styling */
 const styles = StyleSheet.create({
