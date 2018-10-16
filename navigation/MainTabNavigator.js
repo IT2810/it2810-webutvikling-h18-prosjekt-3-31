@@ -31,6 +31,7 @@ CalendarStack.navigationOptions = {
     />
   ),
 };
+
 const MapStack = createStackNavigator({
   Map: MapScreen,
 });
