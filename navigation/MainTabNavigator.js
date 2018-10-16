@@ -58,7 +58,7 @@ TodoStack.navigationOptions = {
       name={
         Platform.OS === 'ios'
           ? `ios-list${focused ? '' : '-outline'}`
-          : 'mformat-list-bulleted'   // The tabBar is a bullet list
+          : 'ios-list'   // The tabBar is a bullet list
       }
     />
   ),
