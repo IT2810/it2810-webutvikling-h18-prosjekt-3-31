@@ -25,6 +25,7 @@
   - [FormScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#formscreen)
   - [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#mapscreen)
 * Test Coverage
+* [Techonology, API, Library Choices](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/develop/README.md#technology-api-library-choices)
 
 ## Installation
 Follow instruction 02 and 03 for
