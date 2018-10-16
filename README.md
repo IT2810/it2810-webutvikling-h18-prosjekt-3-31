@@ -84,10 +84,18 @@ Dependent on React Navigation and React Native Form Builder
 
 ## Testing
 We have tested our components with Jest and "react-test-renderer". 
+
+To run our test, open cmp or terminal and use the following command 
+```
+npm test
+```
+
 #### TodoScreen
 Started to test the different functions, addTasks and deleteTasks, also made a test for the TextInput. We did not get Enzyme to work, so we chose not to test the delete-button ("X"). The button is multiple level deep in the view, and wihout Enzyme it was not possible to test it. Although, we tested the button in our app. It worked as it should here.
 
 #### Code coverage
+
+[Snapshots](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/Master/__tests__/__snapshots__)
 
 ## Sources 
 Code inspiration for the TodoScreen:
