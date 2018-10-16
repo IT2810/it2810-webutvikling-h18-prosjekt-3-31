@@ -105,6 +105,9 @@ First I needed to test that the EpochTimeConverter worked as intended, then writ
 propsHasChanged, addItems and finally onDayPress to check that the state changed when changing the selection.
 Finally I wanted to see that the items in the agenda rendered properly, both with items and empty.
 
+#### MapScreen
+The map screen runs a snapshot test, and a shallow render such that the initial region for map will remain null. The reason for this is that the rendering test will pass independent of the current location of the tester. 
+
 #### Code coverage
 
 [Snapshots](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/Master/__tests__/__snapshots__)
