@@ -64,6 +64,7 @@ Dependent on React Navigation for the stack navigator
 Implements AsyncStorage for storing appointments locally between sessions.
 
 #### TodoScreen
+Contains a list of the todos you have made. You can add new ones in the "Add task" TextInput. Deleting done todos by pressing "X". 
 
 #### FormScreen
 Contains forms for adding a new appointment to the agenda in CalendarsScreen
@@ -80,6 +81,11 @@ Dependent on React Navigation and React Native Form Builder
 * React Native Form Builder
   - Looking up the different ways to build forms, we realized that using the base react native library to build a form would end up with a lot of code just to get the list to show right, in addition to making it harder to build a JSON object with all the forms in it. So we ended up using React Native Form Builder which could handle all of these things for us. 
 * Native Base
+
+## Testing
+We have tested our components with Jest and "react-test-renderer". 
+#### TodoScreen
+Started to test the different functions, addTasks and deleteTasks, also made a test for the TextInput. We did not get Enzyme to work, so we chose not to test the delete-button ("X"). The button is multiple level deep in the view, and wihout Enzyme it was not possible to test it. Although, we tested the button in our app. It worked as it should here.
 
 ## Sources 
 Code inspiration for the TodoScreen:
