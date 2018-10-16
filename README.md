@@ -8,6 +8,8 @@
 
 [Native Base](https://github.com/GeekyAnts/NativeBase) 
 
+[React Navigation](https://github.com/react-navigation/react-navigation)
+
 ## Features
 
 * Agenda with calendar that stores appointments for dates with title and date, also allows adding new appointments
@@ -67,3 +69,13 @@ Contains forms for adding a new appointment to the agenda in CalendarsScreen
 Dependent on React Navigation and React Native Form Builder
 
 #### MapScreen
+
+## Technology, API, Library Choices
+* React Navigation
+  - We decided to use React Navigation to handle our main tab bar (Bottom bar), in addition to the stack navigator for the Agenda View.
+  The reason we decided to use React Navigation is that it is well documented, and is also a well implemented library. Finally expo also recommended the usage of React Navigation.
+* React Native Calendar
+  - As we came up with ideas for the project, we all landed on the need for an agenda / calendar. And after searching around and reading recommendations and tutorials we ended up with React Native Calendar. React Native Calendar was a well implemented component, that supported all our needs, such as an agenda view, calendar view, markers for dates and an easy way to add items to the agenda.
+* React Native Form Builder
+  - Looking up the different ways to build forms, we realized that using the base react native library to build a form would end up with a lot of code just to get the list to show right, in addition to making it harder to build a JSON object with all the forms in it. So we ended up using React Native Form Builder which could handle all of these things for us. 
+* Native Base
