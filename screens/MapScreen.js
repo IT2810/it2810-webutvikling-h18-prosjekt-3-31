@@ -65,6 +65,8 @@ export default class MapScreen extends React.Component {
                           latitudeDelta: LATITUDE_DELTA, 
                           longitudeDelta:LONGITUDE_DELTA
                         },
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
                     finishedLoading: true,  
                     });
 
