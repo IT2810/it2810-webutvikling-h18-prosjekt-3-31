@@ -20,7 +20,7 @@ export default class TodoScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {tasks: [], text: "", counter: 0, goal: "Try to reach 20 within this month."};
+    this.state = {tasks: [], text: "", counter: 0, goal: "Try to reach 20 this month."};
   }
 
   /* The title of the screen */
@@ -75,7 +75,7 @@ export default class TodoScreen extends Component {
   render() {
     return (
       <View style={[styles.container, { paddingBottom: this.state.viewPadding }]} >
-        <Text style={styles.goal}>
+        <Text>
           { "You have completed " + this.state.counter + " todo(s). "}{ '\n' }{ this.state.goal }
         </Text> 
         <FlatList   //The task-list
@@ -138,12 +138,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#E7EDF2",
+    backgroundColor: "#F6F7F7",
     padding: viewPadding,
     paddingTop: 20,
-  },
-  goal: {
-    backgroundColor: "#D5E1E9"
   },
   list: {
     width: "100%"

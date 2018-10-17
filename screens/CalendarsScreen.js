@@ -265,7 +265,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingTop: 23,
     height: isAndroid ? 600 : 575
-    
   },
   Agenda:{
     height: isAndroid ? 570 : 545
