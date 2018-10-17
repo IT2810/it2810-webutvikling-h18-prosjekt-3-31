@@ -9,6 +9,22 @@ exports[`renders correctly 1`] = `
     }
   }
 >
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "alignSelf": "center",
+        "color": "#34495e",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "textAlign": "center",
+      }
+    }
+  >
+    Getting your location...
+  </Text>
   <MapView
     initialRegion={null}
     onRegionChange={[Function]}
@@ -18,18 +34,6 @@ exports[`renders correctly 1`] = `
         "flex": 1,
       }
     }
-  >
-    <MapMarker
-      coordinate={
-        Object {
-          "latitude": 63.417037,
-          "longitude": 10.403093,
-        }
-      }
-      description="A place to go to learn all about CS"
-      stopPropagation={false}
-      title="Department of Computer Science"
-    />
-  </MapView>
+  />
 </Component>
 `;
