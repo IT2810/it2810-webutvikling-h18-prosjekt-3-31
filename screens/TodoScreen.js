@@ -132,8 +132,6 @@ let TasksStorage = {
   }
 };
 
-
-
 /* Styling */
 const styles = StyleSheet.create({
   container: {
