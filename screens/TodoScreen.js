@@ -20,7 +20,7 @@ export default class TodoScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {tasks: [], text: "", counter: 0};
+    this.state = {tasks: [], text: "", counter: 0, goal: "Try to reach 20 within this month."};
   }
 
   /* The title of the screen */
@@ -75,7 +75,9 @@ export default class TodoScreen extends Component {
   render() {
     return (
       <View style={[styles.container, { paddingBottom: this.state.viewPadding }]} >
-        <Text>{"You have completed " + this.state.counter + " todo(s)" }</Text> 
+        <Text style={styles.goal}>
+          { "You have completed " + this.state.counter + " todo(s). "}{ '\n' }{ this.state.goal }
+        </Text> 
         <FlatList   //The task-list
           style={styles.list}
           data={this.state.tasks} //The array of tasks
@@ -86,7 +88,7 @@ export default class TodoScreen extends Component {
                 <Text style={styles.listItem}>
                   {item.text}
                 </Text>
-                <Button title=" X " onPress={() => this.deleteTask(index)} color="#C39B17" />  
+                <Button title=" X " onPress={() => this.deleteTask(index)} />  
               </View>
               <View style={styles.hr} />
             </View>
@@ -138,9 +140,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FFF8E3",
+    backgroundColor: "#E7EDF2",
     padding: viewPadding,
     paddingTop: 20,
+  },
+  goal: {
+    backgroundColor: "#D5E1E9"
   },
   list: {
     width: "100%"
@@ -153,7 +158,7 @@ const styles = StyleSheet.create({
   },
   hr: {
     height: 1,
-    backgroundColor: "#F0D57A"
+    backgroundColor: "#B9C9D4"
   },
   listItemCont: {
     flexDirection: "row",
@@ -164,11 +169,8 @@ const styles = StyleSheet.create({
     height: 40,
     paddingRight: 10,
     paddingLeft: 10,
-    borderColor: "#EFCE63",
+    borderColor: "#B9C9D4",
     borderWidth: isAndroid ? 0 : 1,
     width: "100%"
   },
-  button: {
-    color: "#841584"
-  }
 });
