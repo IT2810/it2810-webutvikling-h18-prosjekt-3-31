@@ -106,8 +106,6 @@ CalendarsScreen has a couple of methods that you should familiarize yourself wit
 Mainly we have 
 ```
   createDayObject(Appointment, date, time){
-    console.log(date);
-    console.log(time);
     const hour = time.toISOString().substring(11,13);
     const minutes = time.toISOString().substring(14,16);
     const seconds = time.toISOString().substring(17,19);
