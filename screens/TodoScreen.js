@@ -88,7 +88,7 @@ export default class TodoScreen extends Component {
   /* When the keybord shows we change the paddingBottom, so the input shows above the keyboard */
   componentDidMount() {
     Keyboard.addListener(
-      isAndroid ? "keyboardDidShow" : "keyboardWillShow",
+      isAndroid ? "keyboardDidShow" : "keyboardWillShow", // If isAndroid: "keyboardDidShow", for other platforms "keyboardWillShow"
       e => this.setState({ viewPadding: e.endCoordinates.height + viewPadding })
     );
     /* When the keyboard is gone, we change the paddingBottom back to the original value*/
@@ -96,7 +96,7 @@ export default class TodoScreen extends Component {
       isAndroid ? "keyboardDidHide" : "keyboardWillHide",
       () => this.setState({ viewPadding: viewPadding })
     );
-    /* After the component it mounted, we load the tasks from localStorage*/
+    /* After the component it mounted, we load the tasks from local storage*/
     TasksStorage.all(tasks => this.setState({ tasks: tasks || [] }));
     this.getCounter();
   }
