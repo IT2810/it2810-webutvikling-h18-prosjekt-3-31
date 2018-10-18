@@ -84,12 +84,12 @@ export default class MapScreen extends React.Component {
           
           <MapView
               style={allStyles.map}
-              initialRegion={{
-                latitude: LATITUTE, 
-                longitude: LONGITUDE, 
-                latitudeDelta: LATITUDE_DELTA, 
-                longitudeDelta:LONGITUDE_DELTA
-              }}
+              // initialRegion={{
+              //   latitude: LATITUTE, 
+              //   longitude: LONGITUDE, 
+              //   latitudeDelta: LATITUDE_DELTA, 
+              //   longitudeDelta:LONGITUDE_DELTA
+              // }}
               onRegionChange={this._handleMapRegionChange}
             >
           </MapView>
