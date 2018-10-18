@@ -15,9 +15,7 @@ import {
 const isAndroid = Platform.OS == "android";
 const viewPadding = 10;
 
-
 export default class TodoScreen extends Component {
-
   constructor(props) {
     super(props);
     this.state = {tasks: [], text: "", counter: 0, goal: "Try to reach 20 this month."};
@@ -46,7 +44,6 @@ export default class TodoScreen extends Component {
 
   /* deletes the task with index i */
   deleteTask = i => {
-    //(counter) => this.setState({ counter: this.state.counter + 1 });
     this.setState(
       prevState => {
         let tasks = prevState.tasks.slice();
@@ -56,35 +53,35 @@ export default class TodoScreen extends Component {
       () => TasksStorage.save(this.state.tasks),
     );
     this.saveCounter();
-    console.log("counter " + this.state.counter);
   };
 
+  /* Saves the counter */
   async saveCounter(){
-    await AsyncStorage.setItem('COUNTER', JSON.stringify(this.state.counter + 1) )
-        .then( ()=>{
-      console.log('It was saved successfully')
+    await AsyncStorage.setItem('COUNTER', JSON.stringify(this.state.counter + 1))
+      .then( ()=>{
+        console.log('It was saved successfully')
       })
-        .catch( ()=>{
-      console.log('Error saving appointment')
+      .catch( ()=>{
+        console.log('Error saving appointment')
       })
   }
 
+  /* Retrieves the saved counter */
   async getCounter(){
     try{
       const existingCounter = await AsyncStorage.getItem('COUNTER');
       let counter = JSON.parse(existingCounter);
-      console.log(counter);
       if (!counter || counter == null || counter == 'null'){
         return false;
       }
       else{
-        this.setState({counter: counter});
+        this.setState({ counter: counter });
         return true;
       }
     }
     catch (error) {
-    console.log("Error retrieving data" + error);
-    return false;
+      console.log("Error retrieving data" + error);
+      return false;
     }
   }
 
@@ -163,20 +160,6 @@ let TasksStorage = {
     AsyncStorage.setItem('TASKS', this.convertToStringWithSeparators(tasks));
   }
 };
-
-let CounterStorage = {
-  save(counter) {
-    if (counter != null && counter != 0){
-      AsyncStorage.setItem('COUNTER', JSON.stringify(counter));
-      console.warn("stooring!" + counter);
-    }
-    
-  },
-  all() {
-    console.warn("geeeetting!" + JSON.stringify(AsyncStorage.getItem('COUNTER')));
-    return JSON.stringify(AsyncStorage.getItem('COUNTER'));
-  }
-}
 
 /* Styling */
 const styles = StyleSheet.create({

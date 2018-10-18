@@ -222,7 +222,6 @@ export default class CalendarsScreen extends Component {
     return r1.name !== r2.name;
   }
 
-  
   timeToString(time) {
     const date = new Date(time);
     return date.toISOString().split('T')[0];
@@ -258,7 +257,6 @@ export default class CalendarsScreen extends Component {
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
