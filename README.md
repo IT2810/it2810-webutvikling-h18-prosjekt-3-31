@@ -108,6 +108,9 @@ Finally I wanted to see that the items in the agenda rendered properly, both wit
 #### MapScreen
 The map screen runs a snapshot test, and a shallow render such that the initial region for map will remain null. The reason for this is that the rendering test will pass independent of the current location of the tester. 
 
+#### FormScreen
+Only minor tests for this screen, as it does not contain a lot of functionality. Code has been written so that it is impossible for any paths in the screen to lead to errors. (Mainly use of navigation, and only one path that actually leads to a returned value to CalendarsScreen. Does contain a snapshot test.
+
 #### Code coverage
 
 [Snapshots](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/Master/__tests__/__snapshots__)
