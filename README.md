@@ -21,13 +21,14 @@
 ## Getting Started
 * [Installation](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#installation)
 * [Running Project](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#running-project)
+* [Techonology, API, Library Choices](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#technology-api-library-choices)
 * [Components](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#components)
   - [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#calendarsscreen)
   - [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#todoscreen)
   - [FormScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#formscreen)
   - [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#mapscreen)
 * [Test Coverage](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#Code-coverage)
-* [Techonology, API, Library Choices](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#technology-api-library-choices)
+
 
 ## Installation
 Follow instruction 02 and 03 for
@@ -54,6 +55,17 @@ expo start
 ```
 Then run on your desired device
 
+## Technology, API, Library Choices
+* React Navigation
+  - We decided to use React Navigation to handle our main tab bar (Bottom bar), in addition to the stack navigator for the Agenda View.
+  The reason we decided to use React Navigation is that it is well documented, and is also a well implemented library. Finally expo also recommended the usage of React Navigation.
+* React Native Calendar
+  - As we came up with ideas for the project, we all landed on the need for an agenda / calendar. And after searching around and reading recommendations and tutorials we ended up with React Native Calendar. React Native Calendar was a well implemented component, that supported all our needs, such as an agenda view, calendar view, markers for dates and an easy way to add items to the agenda.
+* React Native Form Builder
+  - Looking up the different ways to build forms, we realized that using the base react native library to build a form would end up with a lot of code just to get the list to show right, in addition to making it harder to build a JSON object with all the forms in it. So we ended up using React Native Form Builder which could handle all of these things for us. 
+* Native Base
+  - Early on we knew that our app would have to work both on Android and iOS, and that the render, buttons, icons etc. could vary widely from device to device. Therefore we ended up using Native Base, which is a sleek, ingenious and dynamic front-end framework. What is really great with NativeBase is that we could use shared UI cross-platform components, and that it fully supported any native third-party libraries out of the box.
+  
 ## Components
 * [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#calendarsscreen)
 * [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#todoscreen)
@@ -76,17 +88,6 @@ Dependent on React Navigation and React Native Form Builder
 #### MapScreen
 Shows a map, then finds the location of the user and places a marker there. You can pan, zoom and double tap to change the view of the map, as well as tap the marker to display a small text, showing that it found your location. 
 The map is loaded using react-native-maps. 
-
-## Technology, API, Library Choices
-* React Navigation
-  - We decided to use React Navigation to handle our main tab bar (Bottom bar), in addition to the stack navigator for the Agenda View.
-  The reason we decided to use React Navigation is that it is well documented, and is also a well implemented library. Finally expo also recommended the usage of React Navigation.
-* React Native Calendar
-  - As we came up with ideas for the project, we all landed on the need for an agenda / calendar. And after searching around and reading recommendations and tutorials we ended up with React Native Calendar. React Native Calendar was a well implemented component, that supported all our needs, such as an agenda view, calendar view, markers for dates and an easy way to add items to the agenda.
-* React Native Form Builder
-  - Looking up the different ways to build forms, we realized that using the base react native library to build a form would end up with a lot of code just to get the list to show right, in addition to making it harder to build a JSON object with all the forms in it. So we ended up using React Native Form Builder which could handle all of these things for us. 
-* Native Base
-  - Early on we knew that our app would have to work both on Android and iOS, and that the render, buttons, icons etc. could vary widely from device to device. Therefore we ended up using Native Base, which is a sleek, ingenious and dynamic front-end framework. What is really great with NativeBase is that we could use shared UI cross-platform components, and that it fully supported any native third-party libraries out of the box.
   
 ## Testing
 We have tested our components with Jest and "react-test-renderer". 
