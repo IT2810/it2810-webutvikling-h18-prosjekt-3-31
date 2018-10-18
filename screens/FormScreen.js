@@ -48,7 +48,19 @@ export default class FormScreen extends Component {
     newAppointment() {
       const formValues = this.FormScreen.getValues();
       //console.log('FORM VALUES', formValues);
-      return formValues;
+      this.formFilled(formValues);
+    }
+
+    formFilled(formValues){
+      if (formValues.date == null || formValues.time == null){
+        this.props.navigation.navigate('Calendar');
+      }
+      else{
+        this.props.navigation.navigate('Calendar',{
+          day: formValues
+        })
+      }
+
     }
 
     render() {
@@ -70,10 +82,8 @@ export default class FormScreen extends Component {
               />
             </View>
             <View style={styles.Button}>
-            <Button block onPress={() => this.props.navigation.navigate('Calendar',{
-              day: this.newAppointment()
-            })
-          }>
+            <Button block onPress={() => this.newAppointment()}
+          >
               <Text>Add Appointment</Text>
             </Button>
             </View>

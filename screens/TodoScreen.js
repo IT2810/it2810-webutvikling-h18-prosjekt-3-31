@@ -16,15 +16,14 @@ const isAndroid = Platform.OS == "android";
 const viewPadding = 10;
 
 export default class TodoScreen extends Component {
-
-  state = {
-    tasks: [],
-    text: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {tasks: [], text: "", counter: 0, goal: "Try to reach 20 this month."};
+  }
 
   /* The title of the screen */
   static navigationOptions = {
-    title: 'Your Personal Todos - You can do this!',
+    title: 'Your personal todos',
   };
 
   /* adds text to tasks 
@@ -49,16 +48,47 @@ export default class TodoScreen extends Component {
       prevState => {
         let tasks = prevState.tasks.slice();
         tasks.splice(i, 1);
-        return { tasks: tasks };
+        return { tasks: tasks, counter: prevState.counter + 1 };
       },
-      () => TasksStorage.save(this.state.tasks)
+      () => TasksStorage.save(this.state.tasks),
     );
+    this.saveCounter();
   };
+
+  /* Saves the counter */
+  async saveCounter(){
+    await AsyncStorage.setItem('COUNTER', JSON.stringify(this.state.counter + 1))
+      .then( ()=>{
+        console.log('It was saved successfully')
+      })
+      .catch( ()=>{
+        console.log('Error saving appointment')
+      })
+  }
+
+  /* Retrieves the saved counter */
+  async getCounter(){
+    try{
+      const existingCounter = await AsyncStorage.getItem('COUNTER');
+      let counter = JSON.parse(existingCounter);
+      if (!counter || counter == null || counter == 'null'){
+        return false;
+      }
+      else{
+        this.setState({ counter: counter });
+        return true;
+      }
+    }
+    catch (error) {
+      console.log("Error retrieving data" + error);
+      return false;
+    }
+  }
 
   /* When the keybord shows we change the paddingBottom, so the input shows above the keyboard */
   componentDidMount() {
     Keyboard.addListener(
-      isAndroid ? "keyboardDidShow" : "keyboardWillShow",
+      isAndroid ? "keyboardDidShow" : "keyboardWillShow", // If isAndroid: "keyboardDidShow", for other platforms "keyboardWillShow"
       e => this.setState({ viewPadding: e.endCoordinates.height + viewPadding })
     );
     /* When the keyboard is gone, we change the paddingBottom back to the original value*/
@@ -66,13 +96,17 @@ export default class TodoScreen extends Component {
       isAndroid ? "keyboardDidHide" : "keyboardWillHide",
       () => this.setState({ viewPadding: viewPadding })
     );
-    /* After the component it mounted, we load the tasks from localStorage*/
+    /* After the component it mounted, we load the tasks from local storage*/
     TasksStorage.all(tasks => this.setState({ tasks: tasks || [] }));
+    this.getCounter();
   }
 
   render() {
     return (
       <View style={[styles.container, { paddingBottom: this.state.viewPadding }]} >
+        <Text style={styles.completedText}>
+          { "You have completed " + this.state.counter + " todo(s). "}{ '\n' }{ this.state.goal }
+        </Text> 
         <FlatList   //The task-list
           style={styles.list}
           data={this.state.tasks} //The array of tasks
@@ -83,7 +117,7 @@ export default class TodoScreen extends Component {
                 <Text style={styles.listItem}>
                   {item.text}
                 </Text>
-                <Button title=" X " onPress={() => this.deleteTask(index)} color="#C39B17" />  
+                <Button title=" X " onPress={() => this.deleteTask(index)} />  
               </View>
               <View style={styles.hr} />
             </View>
@@ -133,7 +167,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FFF8E3",
+    backgroundColor: "#F6F7F7",
     padding: viewPadding,
     paddingTop: 20,
   },
@@ -148,7 +182,7 @@ const styles = StyleSheet.create({
   },
   hr: {
     height: 1,
-    backgroundColor: "#F0D57A"
+    backgroundColor: "#B9C9D4"
   },
   listItemCont: {
     flexDirection: "row",
@@ -159,11 +193,15 @@ const styles = StyleSheet.create({
     height: 40,
     paddingRight: 10,
     paddingLeft: 10,
-    borderColor: "#EFCE63",
+    borderColor: "#B9C9D4",
     borderWidth: isAndroid ? 0 : 1,
     width: "100%"
   },
-  button: {
-    color: "#841584"
-  }
+  completedText: {
+    alignSelf: "center",
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#34495e',
+    paddingBottom: 10,
+  },
 });
