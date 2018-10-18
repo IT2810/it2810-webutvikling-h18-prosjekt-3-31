@@ -152,6 +152,7 @@ export default class CalendarsScreen extends Component {
   addItems(day){
     const time = day.timestamp + 24 * 60 * 60 * 1000;
     const strTime = this.timeToString(time);
+    // If there's no list for this strTime, make a new one
     if (!this.state.items[strTime]) {
       this.state.items[strTime] = [];
       this.state.items[strTime].push({
@@ -164,6 +165,7 @@ export default class CalendarsScreen extends Component {
         items: newItems
       });
     }
+    // If there is a list, just push the new item onto the list
     else{
       this.state.items[strTime].push({
           name: day.appointment + ' ' + strTime,
