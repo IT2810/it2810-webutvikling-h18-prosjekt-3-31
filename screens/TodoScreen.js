@@ -55,9 +55,38 @@ export default class TodoScreen extends Component {
       },
       () => TasksStorage.save(this.state.tasks),
     );
-    CounterStorage.save(this.state.counter);
-    console.warn("counter" + this.state.counter);
+    this.saveCounter();
+    console.log("counter " + this.state.counter);
   };
+
+  async saveCounter(){
+    await AsyncStorage.setItem('COUNTER', JSON.stringify(this.state.counter) )
+        .then( ()=>{
+      console.log('It was saved successfully')
+      })
+        .catch( ()=>{
+      console.log('Error saving appointment')
+      })
+  }
+
+  async getCounter(){
+    try{
+      const existingCounter = await AsyncStorage.getItem('COUNTER');
+      let counter = JSON.parse(existingCounter);
+      console.log(counter);
+      if (!counter || counter == null || counter == 'null'){
+        return false;
+      }
+      else{
+        this.setState({counter: counter});
+        return true;
+      }
+    }
+    catch (error) {
+    console.log("Error retrieving data" + error);
+    return false;
+    }
+  }
 
   /* When the keybord shows we change the paddingBottom, so the input shows above the keyboard */
   componentDidMount() {
@@ -72,7 +101,7 @@ export default class TodoScreen extends Component {
     );
     /* After the component it mounted, we load the tasks from localStorage*/
     TasksStorage.all(tasks => this.setState({ tasks: tasks || [] }));
-    CounterStorage.all(counter => this.setState({ counter: counter }));
+    this.getCounter();
   }
 
   render() {
