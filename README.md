@@ -205,6 +205,41 @@ if there are, it passes the object to the CalendarsScreen, which creates a new d
 adds this to the Agenda, and then navigates to the CalendarsScreen. However, if there is no date or time, it passes nothing, 
 and only navigates back to the CalendarsScreen
 
+#### TodoScreen
+To give a little introduction on how the TodoScreen component works. Todoscreen have some methods it can be wise to familiarize yourself with. We have
+```
+addTask = text => {
+    if (text.trim().length > 0) {
+      this.setState({
+        tasks: [...this.state.tasks, {key: this.state.tasks.length, text: text}],
+        text: ""
+      },
+        () => TasksStorage.save(this.state.tasks)
+      );
+    }
+  };
+```
+This function adds a new task with the parameter “text”. The function trims the text and adds it to the state tasks. Then it sets the text to empty, as to not have any text in the input-button on the app. Finally it saves the new task in TaskStorage. 
+
+The class also have
+```
+deleteTask = i => {
+    this.setState(
+      prevState => {
+        let tasks = prevState.tasks.slice();
+        tasks.splice(i, 1);
+        return { tasks: tasks, counter: prevState.counter + 1 };
+      },
+      () => TasksStorage.save(this.state.tasks),
+    );
+    this.saveCounter();
+  };
+```
+This function deletes the task with index i. Then it updates the tasks-list with the updated values, and updates the counter with 1 per deleted task. Afterwards it saves the new tasks-list   and the counteris saved locally. 
+
+The rest of the code in TodoScreen is well commented, and the other functions are smaller and easier to familiarize yourself with, so for further information we recommend taking a look at the source code.
+
+
 ## Testing
 We have tested our components with Jest and "react-test-renderer". 
 
