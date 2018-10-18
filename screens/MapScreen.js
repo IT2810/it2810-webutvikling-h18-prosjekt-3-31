@@ -2,6 +2,7 @@ import React from 'react';
 import { MapView, Location, Permissions, } from 'expo';
 import {Text, View, StyleSheet} from 'react-native';
 
+// init location data, shows Trondheim and sets a `zoom level`
 const LATITUTE = 63.417037;
 const LONGITUDE = 10.403093;
 const LATITUDE_DELTA = 0.0222;
@@ -15,13 +16,13 @@ export default class MapScreen extends React.Component {
     this.state = {
       mapRegion:null,
       locationResult: null,
-      places: ",",
       finishedLoading: false,
       latitude: LATITUTE,
       longitude: LONGITUDE,
     };
   }
-// title of screen
+
+  // title of screen
   static navigationOptions = {
     title: 'Map',
   };
@@ -29,8 +30,6 @@ export default class MapScreen extends React.Component {
 
   componentWillMount() {
     this._getLocationAsync();
-    // console.log("this.state.mapRegion");
-    // console.log(this.state.mapRegion);
   }
 
   // allowes users to pan and zoom the map
@@ -47,7 +46,6 @@ export default class MapScreen extends React.Component {
           longitude: this.state.mapRegion.longitude,
         })
       } 
-      
     }
   }
 
@@ -73,9 +71,6 @@ export default class MapScreen extends React.Component {
                     finishedLoading: true,  
                     });
 
-    // console.log("maps");
-    // console.log(this.state.mapRegion);
-
   };
   
   render() {
@@ -89,7 +84,12 @@ export default class MapScreen extends React.Component {
           
           <MapView
               style={allStyles.map}
-              initialRegion={this.state.mapRegion}
+              initialRegion={{
+                latitude: LATITUTE, 
+                longitude: LONGITUDE, 
+                latitudeDelta: LATITUDE_DELTA, 
+                longitudeDelta:LONGITUDE_DELTA
+              }}
               onRegionChange={this._handleMapRegionChange}
             >
           </MapView>
@@ -106,11 +106,9 @@ export default class MapScreen extends React.Component {
             initialRegion={this.state.mapRegion}
             onRegionChange={this._handleMapRegionChange}
           >
-
-          <MapView.Marker
-                coordinate={{latitude: this.state.latitude, longitude: this.state.longitude }}
-                title={"You are here!"}
-                // description={"Yes you"}
+            <MapView.Marker
+              coordinate={{latitude: this.state.latitude, longitude: this.state.longitude }}
+              title={"You are here!"} 
             />
           </MapView>
         </View>
@@ -119,7 +117,6 @@ export default class MapScreen extends React.Component {
     }   
   }
 }
-
 
 
 const allStyles = StyleSheet.create({
@@ -132,7 +129,7 @@ const allStyles = StyleSheet.create({
     alignSelf: 'stretch', 
     flex:1,
   },
-  loading:{
+  loading: {
     alignSelf: "center",
     textAlign: 'center',
     fontSize: 16,
