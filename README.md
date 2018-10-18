@@ -108,7 +108,7 @@ To give you an easy introducdtion to CalendarsScreen and the functions that aren
 recognizable, we've written a small introduction to the largers functions in this class.
 CalendarsScreen has a couple of methods that you should familiarize yourself with
 Mainly we have 
-```
+```javascript
   createDayObject(Appointment, date, time){
     const hour = time.toISOString().substring(11,13);
     const minutes = time.toISOString().substring(14,16);
@@ -135,7 +135,7 @@ runs getEpochTime and gets the UNIX epoch time for the date and time
 It formats everything into a Day object which the class uses in multiple locations.
 
 Other than this the class has
-```
+```javascript
   addItems(day){
     const time = day.timestamp + 24 * 60 * 60 * 1000;
     const strTime = this.timeToString(time);
@@ -182,7 +182,7 @@ Formscreen doesn't contain a lot of code, or functions. It does however make use
 to pass a JSONObject with formvalues back to the CalendarsScreen.
 It does this after the push of the button Add Appointment, which triggers the following
 two functions
-```
+```javascript
     newAppointment() {
       const formValues = this.FormScreen.getValues();
       //console.log('FORM VALUES', formValues);
@@ -211,7 +211,7 @@ and only navigates back to the CalendarsScreen
 
 #### TodoScreen
 To give a little introduction on how the TodoScreen component works. Todoscreen have some methods it can be wise to familiarize yourself with. We have
-```
+```javascript
 addTask = text => {
     if (text.trim().length > 0) {
       this.setState({
@@ -226,7 +226,7 @@ addTask = text => {
 This function adds a new task with the parameter “text”. The function trims the text and adds it to the state tasks. Then it sets the text to empty, as to not have any text in the input-button on the app. Finally it saves the new task in TaskStorage. 
 
 The class also have
-```
+```javascript
 deleteTask = i => {
     this.setState(
       prevState => {
@@ -247,7 +247,7 @@ The rest of the code in TodoScreen is well commented, and the other functions ar
 The main functionality for the mapscreen, other than displaying the map, is to find your location. It is a fairly simple component, that makes use of the Expo `MapView` and `Location` components. 
 
 At start up the `_getLocationAsync` function is triggernd. It askes for permission to access the users location and if granted, sets the mapregion, and map marker coordinates.
-```
+```javascript
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
@@ -272,7 +272,7 @@ At start up the `_getLocationAsync` function is triggernd. It askes for permissi
 ```
 Attempting to display a user’s position before a location has been found will cause an error, therefore this component renders conditionally  
 
-```
+```javascript
  render() {
     if (!this.state.finishedLoading){
       return(
