@@ -51,10 +51,12 @@ export default class TodoScreen extends Component {
       prevState => {
         let tasks = prevState.tasks.slice();
         tasks.splice(i, 1);
-        return { tasks: tasks, counter: prevState.counter + 1 };
+        return { tasks: tasks, counter: this.state.counter + 1 };
       },
       () => TasksStorage.save(this.state.tasks),
     );
+    CounterStorage.save(this.state.counter);
+    console.warn("counter" + this.state.counter);
   };
 
   /* When the keybord shows we change the paddingBottom, so the input shows above the keyboard */
@@ -70,6 +72,7 @@ export default class TodoScreen extends Component {
     );
     /* After the component it mounted, we load the tasks from localStorage*/
     TasksStorage.all(tasks => this.setState({ tasks: tasks || [] }));
+    CounterStorage.all(counter => this.setState({ counter: counter }));
   }
 
   render() {
@@ -131,6 +134,20 @@ let TasksStorage = {
     AsyncStorage.setItem('TASKS', this.convertToStringWithSeparators(tasks));
   }
 };
+
+let CounterStorage = {
+  save(counter) {
+    if (counter != null && counter != 0){
+      AsyncStorage.setItem('COUNTER', JSON.stringify(counter));
+      console.warn("stooring!" + counter);
+    }
+    
+  },
+  all() {
+    console.warn("geeeetting!" + JSON.stringify(AsyncStorage.getItem('COUNTER')));
+    return JSON.stringify(AsyncStorage.getItem('COUNTER'));
+  }
+}
 
 /* Styling */
 const styles = StyleSheet.create({
