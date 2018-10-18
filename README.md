@@ -246,7 +246,7 @@ The rest of the code in TodoScreen is well commented, and the other functions ar
 #### MapScreen	
 The main functionality for the mapscreen, other than displaying the map, is to find your location. It is a fairly simple component, that makes use of the Expo `MapView` and `Location` components. 
 
-At start up the `_getLocationAsync` function is triggernd. It askes for permission to access the users location and if granted, sets the mapregion, and map marker coordinates.
+At start up the `_getLocationAsync` function is triggernd. It askes for permission to access the user's location and if granted, sets the map region and map marker coordinates.
 ```javascript
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
