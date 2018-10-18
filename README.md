@@ -28,6 +28,7 @@ In this project we made a personal information manager app. The app helps you ke
   - [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#todoscreen)
   - [FormScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#formscreen)
   - [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#mapscreen)
+* [Tutorial](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#tutorial)
 * [Test Coverage](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#Code-coverage)
 
 
@@ -66,7 +67,13 @@ Then run on your desired device
   - Looking up the different ways to build forms, we realized that using the base react native library to build a form would end up with a lot of code just to get the list to show right, in addition to making it harder to build a JSON object with all the forms in it. So we ended up using React Native Form Builder which could handle all of these things for us. 
 * Native Base
   - Early on we knew that our app would have to work both on Android and iOS, and that the render, buttons, icons etc. could vary widely from device to device. Therefore we ended up using Native Base, which is a sleek, ingenious and dynamic front-end framework. What is really great with NativeBase is that we could use shared UI cross-platform components, and that it fully supported any native third-party libraries out of the box.
-  
+* React Native
+	- We used react native to build the app, react native allows developers to only use JavaScript
+	to create apps, which use the same design as React. This allows developers to 
+	compose moble UIs easily. React Native allows developers to create real mobile apps
+	that are indistinguishable from apps built used C# or Java, and it uses the same 
+	fundamental building blocks as regular iOS and Android apps.
+
 ## Components
 * [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#calendarsscreen)
 * [TodoScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#todoscreen)
@@ -89,7 +96,117 @@ Dependent on React Navigation and React Native Form Builder
 #### MapScreen
 Shows a map, then finds the location of the user and places a marker there. You can pan, zoom and double tap to change the view of the map, as well as tap the marker to display a small text, showing that it found your location. 
 The map is loaded using react-native-maps. 
-  
+
+## Tutorial
+
+#### CalendarsScreen
+To give you an easy introducdtion to CalendarsScreen and the functions that aren't easily
+recognizable, we've written a small introduction to the largers functions in this class.
+CalendarsScreen has a couple of methods that you should familiarize yourself with
+Mainly we have 
+```
+  createDayObject(Appointment, date, time){
+    console.log(date);
+    console.log(time);
+    const hour = time.toISOString().substring(11,13);
+    const minutes = time.toISOString().substring(14,16);
+    const seconds = time.toISOString().substring(17,19);
+    const milliseconds = time.toISOString().substring(20,21);
+    const year = date.toISOString().substring(0,4);
+    const day = date.toISOString().substring(8,10);
+    const month = date.toISOString().substring(5,7);
+    const newDayObject = {"appointment": Appointment,
+                    "dateString": date.toISOString().substring(0,10),
+                    "day": day,
+                    "month": month,
+                    "timestamp": this.getEpochTime(year, month, day, hour, minutes, seconds, milliseconds),
+                    "year": year
+                    };
+    return newDayObject;
+  }
+```
+This function takes in an Appointment string, a date object and a time object.
+The date and time objects are both javascript date objects, but one contains the correct date
+and the other contains the correct time for the appointment to be added.
+The function itself then gets the correct information out of each object,
+runs getEpochTime and gets the UNIX epoch time for the date and time
+It formats everything into a Day object which the class uses in multiple locations.
+
+Other than this the class has
+```
+  addItems(day){
+    const time = day.timestamp + 24 * 60 * 60 * 1000;
+    const strTime = this.timeToString(time);
+    if (!this.state.items[strTime]) {
+      this.state.items[strTime] = [];
+      this.state.items[strTime].push({
+        name: day.appointment + ' ' + strTime,
+        height: 50
+      });
+      const newItems = {};
+      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
+      this.setState({
+        items: newItems
+      });
+    }
+    else{
+      this.state.items[strTime].push({
+          name: day.appointment + ' ' + strTime,
+          height: 50
+        });
+        const newItems = {};
+        Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
+        this.setState({
+          items: newItems
+        });
+      } 
+    }
+```
+This class takes in a Day object (such as the one created by the the function above).
+It then checks the items that already exists in the state, and if there are none at the
+specified Day objects time, it creates a new list, pushes the Day objects appointment string
+date and time onto the new list, and adds it to the state.
+However if there is a list already at the Day objects time, it will push the Day objects appointment string 
+and date onto the existing list, and add it to the state.
+Lastly it parses through the state to see if there are new items and sets the state, triggering
+a rerender.
+
+All of the code in CalendarsScreen is pretty well commented, and the other functions are
+smaller and easier to familiarize yourself with, so for further information we recommend taking a look at
+the source code.
+
+#### FormScreen
+Formscreen doesn't contain a lot of code, or functions. It does however make use of the Stack Navigator
+to pass a JSONObject with formvalues back to the CalendarsScreen.
+It does this after the push of the button Add Appointment, which triggers the following
+two functions
+```
+    newAppointment() {
+      const formValues = this.FormScreen.getValues();
+      //console.log('FORM VALUES', formValues);
+      this.formFilled(formValues);
+    }
+
+
+    formFilled(formValues){
+      if (formValues.date == null || formValues.time == null){
+        this.props.navigation.navigate('Calendar');
+      }
+      else{
+        this.props.navigation.navigate('Calendar',{
+          day: formValues
+        })
+      }
+
+    }
+```
+
+newAppointment is firstly triggered, which gets the values of the form, and sends them
+into formFilled. formFilled then checks the values to make sure there's an actual date and time
+if there are, it passes the object to the CalendarsScreen, which creates a new day object and
+adds this to the Agenda, and then navigates to the CalendarsScreen. However, if there is no date or time, it passes nothing, 
+and only navigates back to the CalendarsScreen
+
 ## Testing
 We have tested our components with Jest and "react-test-renderer". 
 
