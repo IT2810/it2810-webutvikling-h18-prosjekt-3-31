@@ -51,7 +51,7 @@ export default class TodoScreen extends Component {
       prevState => {
         let tasks = prevState.tasks.slice();
         tasks.splice(i, 1);
-        return { tasks: tasks, counter: this.state.counter + 1 };
+        return { tasks: tasks, counter: prevState.counter + 1 };
       },
       () => TasksStorage.save(this.state.tasks),
     );
@@ -60,7 +60,7 @@ export default class TodoScreen extends Component {
   };
 
   async saveCounter(){
-    await AsyncStorage.setItem('COUNTER', JSON.stringify(this.state.counter) )
+    await AsyncStorage.setItem('COUNTER', JSON.stringify(this.state.counter + 1) )
         .then( ()=>{
       console.log('It was saved successfully')
       })
