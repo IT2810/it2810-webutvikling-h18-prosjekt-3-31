@@ -67,6 +67,7 @@ Implements AsyncStorage for storing appointments locally between sessions.
 
 #### TodoScreen
 Contains a list of the todos you have made. You can add new ones in the "Add task" TextInput. Deleting done todos by pressing "X". 
+Implemented a counter that keeps track of how many todos you have completed. 
 
 #### FormScreen
 Contains forms for adding a new appointment to the agenda in CalendarsScreen
