@@ -1,5 +1,5 @@
 ﻿# it2810-webutvikling-h18-prosjekt-3-31
-In this project we made a personal information manager app. The app helps you keep track of appointments and todos, and also features a map and a calendar. By using the app the user can add new appointments connected to a date and new todos, and see where she/he is on the map.
+In this project we made a personal information manager app. The app helps you keep track of appointments and todos, and also features a map and a calendar. By using the app the user can add new appointments connected to a date and new todos, and see where she/he is on the map. It is supposed to be motivational by counting completed todos, and help you reach a specific number of todos a month.
 
 ## Dependencies
 
