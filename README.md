@@ -98,7 +98,7 @@ npm test
 ```
 
 #### TodoScreen
-Started to test the different functions, addTasks and deleteTasks, also made a test for the TextInput. We did not get Enzyme to work, so we chose not to test the delete-button ("X"). The button is multiple level deep in the view, and wihout Enzyme it was not possible to test it. Although, we tested the button in our app. It worked as it should here.
+Started to test the different functions, addTasks and deleteTasks, also made a test for the TextInput. We did not get Enzyme to work, so we chose not to test the delete-button ("X"). The button is multiple level deep in the view, and without Enzyme it was not possible to test it. Although, we tested the button in our app. It worked as it should here. The test for TodoScreen also includes a snapshot test.
 
 #### CalendarsScreen
 Started first with a snapshot test, after that I systematically went through important functions, and the functions they again used.
