@@ -65,6 +65,8 @@ Then run on your desired device
   - As we came up with ideas for the project, we all landed on the need for an agenda / calendar. And after searching around and reading recommendations and tutorials we ended up with React Native Calendar. React Native Calendar was a well implemented component, that supported all our needs, such as an agenda view, calendar view, markers for dates and an easy way to add items to the agenda.
 * React Native Form Builder
   - Looking up the different ways to build forms, we realized that using the base react native library to build a form would end up with a lot of code just to get the list to show right, in addition to making it harder to build a JSON object with all the forms in it. So we ended up using React Native Form Builder which could handle all of these things for us. 
+*  React Native Maps
+	- While the map is imported from Expo, the map that Expo displays is the `<mapview>`-component from React native maps. The maps shows Google Maps on android devices and Apple Maps in iOS devices.
 * Native Base
   - Early on we knew that our app would have to work both on Android and iOS, and that the render, buttons, icons etc. could vary widely from device to device. Therefore we ended up using Native Base, which is a sleek, ingenious and dynamic front-end framework. What is really great with NativeBase is that we could use shared UI cross-platform components, and that it fully supported any native third-party libraries out of the box.
 * React Native
@@ -73,6 +75,8 @@ Then run on your desired device
 	compose moble UIs easily. React Native allows developers to create real mobile apps
 	that are indistinguishable from apps built used C# or Java, and it uses the same 
 	fundamental building blocks as regular iOS and Android apps.
+* Expo
+	- Expo is an app and software framework for exhibits and expositions. It uses Facebook's React Native framework, and aids in the development of apps.  With the Expo app you can test on a device without having to set up an iOS Simulator or an Android Virtual Device. Furthermore, Expo has software development kit which means the app can access sensors and functionality that the device has, for instance camera, accelerometer and location. While these features can be implemented using open source packages, Expo makes them available in one place. 
 
 ## Components
 * [CalendarsScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#calendarsscreen)
@@ -238,6 +242,51 @@ deleteTask = i => {
 This function deletes the task with index i. Then it updates the tasks-list with the updated values, and updates the counter with 1 per deleted task. Afterwards it saves the new tasks-list   and the counteris saved locally. 
 
 The rest of the code in TodoScreen is well commented, and the other functions are smaller and easier to familiarize yourself with, so for further information we recommend taking a look at the source code.
+
+#### MapScreen	
+The main functionality for the mapscreen, other than displaying the map, is to find your location. It is a fairly simple component, that makes use of the Expo `MapView` and `Location` components. 
+
+At start up the `_getLocationAsync` function is triggernd. It askes for permission to access the users location and if granted, sets the mapregion, and map marker coordinates.
+```
+  _getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({ locationResult: 'Permission to access location was denied' });
+    } else { this.setState({ hasLocationPermissions: true });    }
+ 
+    let location = await Location.getCurrentPositionAsync({});
+    this.setState({ locationResult: JSON.stringify(location) });
+    
+    // sets intial coordinates, will be same for region and marker
+     this.setState({mapRegion: 
+                        { latitude: location.coords.latitude, 
+                          longitude: location.coords.longitude, 
+                          latitudeDelta: LATITUDE_DELTA, 
+                          longitudeDelta:LONGITUDE_DELTA
+                        },
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                    finishedLoading: true,  
+                    });
+  };
+```
+Attempting to display a user’s position before a location has been found will cause an error, therefore this component renders conditionally  
+
+```
+ render() {
+    if (!this.state.finishedLoading){
+      return(
+        ...  
+      );
+    }
+    else{
+      return(
+       	...
+      );
+    }   
+  }
+
+```
 
 
 ## Testing
