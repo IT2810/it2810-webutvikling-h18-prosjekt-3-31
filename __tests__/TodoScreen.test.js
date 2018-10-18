@@ -37,6 +37,16 @@ test('Can delete task', () => {
     expect(instance.state.task).toBeUndefined();
 });
 
+test('Counter updates when deleting a task', () => {
+    const TodoScreenComponent = renderer
+        .create(< TodoScreen />).root;
+    const instance = TodoScreenComponent.instance;
+    const text = "Todo";
+    instance.addTask(text);
+    instance.deleteTask(text);
+    expect(instance.state.counter).toBe(1);
+});
+
 it('TextInput can add tasks', () => {
     const TodoScreenComponent = renderer.create(< TodoScreen />);
     const root = TodoScreenComponent.root;

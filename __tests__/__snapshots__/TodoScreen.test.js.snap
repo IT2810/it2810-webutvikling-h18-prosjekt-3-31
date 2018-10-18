@@ -18,6 +18,13 @@ exports[`renders correctly 1`] = `
     ]
   }
 >
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    You have completed 0 todo(s)
+  </Text>
   <TextInput
     allowFontScaling={true}
     maxLength={30}
