@@ -74,13 +74,13 @@ Then run on your desired device
 * [MapScreen](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/README.md#mapscreen)
 
 #### CalendarsScreen
-Contains the Agenda with appointments
-Dependent on React Navigation for the stack navigator
+Contains the Agenda with appointments.
+Dependent on React Navigation for the stack navigator.
 Implements AsyncStorage for storing appointments locally between sessions.
 
 #### TodoScreen
 Contains a list of the todos you have made. You can add new ones in the "Add task" TextInput. Deleting done todos by pressing "X". 
-Implemented a counter that keeps track of how many todos you have completed. 
+Implemented a counter that keeps track of how many todos you have completed. Implements AsyncStorage for storing appointments locally between sessions.
 
 #### FormScreen
 Contains forms for adding a new appointment to the agenda in CalendarsScreen
@@ -100,7 +100,7 @@ npm test
 ```
 
 #### TodoScreen
-Started to test the different functions, addTasks and deleteTasks, also made a test for the TextInput. We did not get Enzyme to work, so we chose not to test the delete-button ("X"). The button is multiple level deep in the view, and without Enzyme it was not possible to test it. Although, we tested the button in our app. It worked as it should here. The test for TodoScreen also includes a snapshot test.
+Started to test the different functions, addTasks and deleteTasks, also made a test for the TextInput. We did not get Enzyme to work, so we chose not to test the delete-button ("X"). The button is multiple level deep in the view, and without Enzyme it was not possible to test it. Although, we tested the button interactively. It worked as it should here. The test for TodoScreen also includes a snapshot test.
 
 #### CalendarsScreen
 Started first with a snapshot test, after that I systematically went through important functions, and the functions they again used.
