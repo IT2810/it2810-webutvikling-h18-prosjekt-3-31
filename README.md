@@ -257,7 +257,6 @@ At start up the `_getLocationAsync` function is triggernd. It askes for permissi
     let location = await Location.getCurrentPositionAsync({});
     this.setState({ locationResult: JSON.stringify(location) });
     
-    // sets intial coordinates, will be same for region and marker
      this.setState({mapRegion: 
                         { latitude: location.coords.latitude, 
                           longitude: location.coords.longitude, 
