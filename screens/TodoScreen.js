@@ -104,7 +104,7 @@ export default class TodoScreen extends Component {
   render() {
     return (
       <View style={[styles.container, { paddingBottom: this.state.viewPadding }]} >
-        <Text>
+        <Text style={styles.completedText}>
           { "You have completed " + this.state.counter + " todo(s). "}{ '\n' }{ this.state.goal }
         </Text> 
         <FlatList   //The task-list
@@ -196,5 +196,12 @@ const styles = StyleSheet.create({
     borderColor: "#B9C9D4",
     borderWidth: isAndroid ? 0 : 1,
     width: "100%"
+  },
+  completedText: {
+    alignSelf: "center",
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#34495e',
+    paddingBottom: 10,
   },
 });
