@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<Component
+  style={
+    Object {
+      "backgroundColor": "#ecf0f1",
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "alignSelf": "center",
+        "color": "#34495e",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "textAlign": "center",
+      }
+    }
+  >
+    Getting your location...
+  </Text>
+  <MapView
+    onRegionChange={[Function]}
+    style={
+      Object {
+        "alignSelf": "stretch",
+        "flex": 1,
+      }
+    }
+  />
+</Component>
+`;

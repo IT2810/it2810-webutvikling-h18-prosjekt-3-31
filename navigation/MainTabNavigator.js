@@ -1,60 +1,71 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import TodoScreen from '../screens/TodoScreen';
+import CalendarsScreen from '../screens/CalendarsScreen';
+import FormScreen from '../screens/FormScreen';
+import MapScreen from '../screens/MapScreen';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+
+const CalendarStack = createStackNavigator({
+  Calendar: CalendarsScreen,
+  Form: FormScreen,
+  
+  },
+  {
+    initialRouteName: 'Calendar',
+  }
+);
+
+CalendarStack.navigationOptions = {
+  headerVisible: false,
+  tabBarLabel: 'Calendar',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios' 
+          ? `ios-calendar${focused ? '' : '-outline'}` 
+           : 'ios-calendar'}
+    />
+  ),
+};
+
+const MapStack = createStackNavigator({
+  Map: MapScreen,
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+MapStack.navigationOptions = {
+  tabBarLabel: 'Map',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-map${focused ? '' : '-outline'}` : 'md-map'}
+      />
+      ),
+    };
+
+const TodoStack = createStackNavigator({
+  Todo: TodoScreen,
+});
+
+TodoStack.navigationOptions = {
+  tabBarLabel: 'Todo',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-list${focused ? '' : '-outline'}`
+          : 'ios-list'   // The tabBar is a bullet list
       }
     />
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
-    />
-  ),
-};
-
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
-    />
-  ),
-};
-
 export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+  CalendarStack,
+  TodoStack,
+  MapStack
 });
