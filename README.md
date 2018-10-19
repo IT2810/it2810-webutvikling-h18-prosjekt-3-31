@@ -367,7 +367,7 @@ Only minor tests for this screen, as it does not contain a lot of functionality.
 
 [Snapshots](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/tree/Master/__tests__/__snapshots__)
 
-![Code Coverage](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/master/assets/images/Test%20Coverage%20Report.jpg)
+[Code Coverage](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-3-31/blob/Master/assets/images/Coverage.png)
 
 ## Sources 
 Code inspiration for the TodoScreen:
