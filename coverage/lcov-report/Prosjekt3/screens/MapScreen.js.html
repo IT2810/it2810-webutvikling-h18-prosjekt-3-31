@@ -182,35 +182,8 @@
 137
 138
 139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+140</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -245,8 +218,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -285,9 +258,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -310,14 +283,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -339,27 +304,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -381,6 +325,7 @@
 import { MapView, Location, Permissions, } from 'expo';
 import {Text, View, StyleSheet} from 'react-native';
 &nbsp;
+// init location data, shows Trondheim and sets a `zoom level`
 const LATITUTE = 63.417037;
 const LONGITUDE = 10.403093;
 const LATITUDE_DELTA = 0.0222;
@@ -394,13 +339,13 @@ export default class MapScreen extends React.Component {
     this.state = {
       mapRegion:null,
       locationResult: null,
-      places: ",",
       finishedLoading: false,
       latitude: LATITUTE,
       longitude: LONGITUDE,
     };
   }
 &nbsp;
+  // title of screen
   static navigationOptions = {
     title: 'Map',
   };
@@ -408,14 +353,14 @@ export default class MapScreen extends React.Component {
 &nbsp;
   componentWillMount() {
     this._getLocationAsync();
-    // console.log("this.state.mapRegion");
-    // console.log(this.state.mapRegion);
   }
 &nbsp;
+  // allowes users to pan and zoom the map
   _handleMapRegionChange = <span class="fstat-no" title="function not covered" >ne</span>wmapRegion =&gt; {
 <span class="cstat-no" title="statement not covered" >    this.setState({ newmapRegion });</span>
   };
   
+  // setes the coordinate for the map marker, after having loaded loacation, the maker should be different from the map center
 <span class="fstat-no" title="function not covered" >  co</span>mponentWillUpdate(){
 <span class="cstat-no" title="statement not covered" >    if (this.state.finishedLoading){</span>
 <span class="cstat-no" title="statement not covered" >      if (this.state.latitude != this.state.mapRegion.latitude &amp;&amp; this.state.longitude != this.state.mapRegion.longitude){</span>
@@ -424,10 +369,10 @@ export default class MapScreen extends React.Component {
           longitude: this.state.mapRegion.longitude,
         })
       } 
-      
     }
   }
 &nbsp;
+  // loades the user location, runs on startup
   _getLocationAsync = async () =&gt; {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
 <span class="cstat-no" title="statement not covered" >    if (status !== 'granted') {</span>
@@ -437,18 +382,17 @@ export default class MapScreen extends React.Component {
     let location = <span class="cstat-no" title="statement not covered" >await Location.getCurrentPositionAsync({});</span>
 <span class="cstat-no" title="statement not covered" >    this.setState({ locationResult: JSON.stringify(location) });</span>
     
-    // Centers the map on the location fetched - takes abt 2000ms :/
+    // sets intial coordinates, will be same for region and marker
 <span class="cstat-no" title="statement not covered" >     this.setState({mapRegion: </span>
                         { latitude: location.coords.latitude, 
                           longitude: location.coords.longitude, 
                           latitudeDelta: LATITUDE_DELTA, 
                           longitudeDelta:LONGITUDE_DELTA
                         },
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
                     finishedLoading: true,  
                     });
-&nbsp;
-    // console.log("maps");
-    // console.log(this.state.mapRegion);
 &nbsp;
   };
   
@@ -457,20 +401,21 @@ export default class MapScreen extends React.Component {
       return(
         &lt;View style={allStyles.cont}&gt;
 &nbsp;
-        &lt;Text style= {allStyles.loading}&gt;
-          Getting your location...
-        &lt;/Text&gt;
+          &lt;Text style= {allStyles.loading}&gt;
+            Getting your location...
+          &lt;/Text&gt;
           
           &lt;MapView
-            style={allStyles.map}
-      
-            initialRegion={
-              this.state.mapRegion
-                      }
-            onRegionChange={this._handleMapRegionChange}
-          &gt;
+              style={allStyles.map}
+              // initialRegion={{
+              //   latitude: LATITUTE, 
+              //   longitude: LONGITUDE, 
+              //   latitudeDelta: LATITUDE_DELTA, 
+              //   longitudeDelta:LONGITUDE_DELTA
+              // }}
+              onRegionChange={this._handleMapRegionChange}
+            &gt;
           &lt;/MapView&gt;
-&nbsp;
         &lt;/View&gt;
       
       );
@@ -481,28 +426,20 @@ export default class MapScreen extends React.Component {
           
           &lt;MapView
             style={allStyles.map}
-      
-            initialRegion={
-              this.state.mapRegion
-                      }
+            initialRegion={this.state.mapRegion}
             onRegionChange={this._handleMapRegionChange}
           &gt;
-&nbsp;
-          &lt;MapView.Marker
-                coordinate={{latitude: this.state.latitude, longitude: this.state.longitude }}
-                title={"You"}
-                description={"Yes you"}
+            &lt;MapView.Marker
+              coordinate={{latitude: this.state.latitude, longitude: this.state.longitude }}
+              title={"You are here!"} 
             /&gt;
           &lt;/MapView&gt;
-&nbsp;
         &lt;/View&gt;
       
       );
-    }
-      
+    }   
   }
 }
-&nbsp;
 &nbsp;
 &nbsp;
 const allStyles = StyleSheet.create({
@@ -515,34 +452,13 @@ const allStyles = StyleSheet.create({
     alignSelf: 'stretch', 
     flex:1,
   },
-  para: {
-    margin: 14,
-    fontSize: 14,
-    color: '#34495e',
-&nbsp;
-  },
-  loading:{
+  loading: {
     alignSelf: "center",
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: 'bold',
     color: '#34495e',
   },
-  // miniTitle: {
-  //   margin: 12,
-  //   fontSize: 18,
-  //   fontWeight: 'bold',
-  //   textAlign: 'center',
-  //   color: '#34495e',
-  // },
-  // txtIn: {
-  //   fontSize: 12, 
-  //   height: 50,
-  //   fontSize: 18,
-  // },
-  // cities: { 
-  //   padding: 5,
-  //   fontSize: 20},
-&nbsp;
 });
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -550,7 +466,7 @@ const allStyles = StyleSheet.create({
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 16 2018 14:47:06 GMT+0200 (GMT+02:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Oct 19 2018 10:24:16 GMT+0200 (GMT+02:00)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

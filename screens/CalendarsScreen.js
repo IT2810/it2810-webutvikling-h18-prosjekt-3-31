@@ -241,7 +241,7 @@ export default class CalendarsScreen extends Component {
       <ScrollView style={styles.container}>
         <Agenda style={styles.Agenda}
         items={this.state.items}
-        selected={'2018-10-03'}
+        selected={'2018-10-15'}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         loadItemsForMonth={this.loadItems.bind(this)}

@@ -6,7 +6,7 @@ exports[`renders correctly 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "#FFF8E3",
+        "backgroundColor": "#F6F7F7",
         "flex": 1,
         "justifyContent": "center",
         "padding": 10,
@@ -22,8 +22,20 @@ exports[`renders correctly 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
+    style={
+      Object {
+        "alignSelf": "center",
+        "color": "#34495e",
+        "fontSize": 16,
+        "paddingBottom": 10,
+        "textAlign": "center",
+      }
+    }
   >
-    You have completed 0 todo(s)
+    You have completed 0 todo(s). 
+    
+
+    Try to reach 20 this month.
   </Text>
   <TextInput
     allowFontScaling={true}
@@ -35,7 +47,7 @@ exports[`renders correctly 1`] = `
     returnKeyType="done"
     style={
       Object {
-        "borderColor": "#EFCE63",
+        "borderColor": "#B9C9D4",
         "borderWidth": 1,
         "height": 40,
         "paddingLeft": 10,

@@ -26,7 +26,6 @@ exports[`renders correctly 1`] = `
     Getting your location...
   </Text>
   <MapView
-    initialRegion={null}
     onRegionChange={[Function]}
     style={
       Object {
