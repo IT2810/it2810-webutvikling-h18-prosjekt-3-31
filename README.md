@@ -173,6 +173,21 @@ and date onto the existing list, and add it to the state.
 Lastly it parses through the state to see if there are new items and sets the state, triggering
 a rerender.
 
+```
+<Agenda style={styles.Agenda}
+        items={this.state.items}
+        selected={'2018-10-15'}
+        renderItem={this.renderItem.bind(this)}
+        renderEmptyDate={this.renderEmptyDate.bind(this)}
+        loadItemsForMonth={this.loadItems.bind(this)}
+        rowHasChanged={this.rowHasChanged.bind(this)}
+        theme={{
+          agendaTodayColor: 'red'
+        }}
+        />
+```
+Also, to get the agenda from React Native Calendar to render, we use the following under render, there's a lot more possibilities available if you take a look on the React Native Calendar page.
+
 All of the code in CalendarsScreen is pretty well commented, and the other functions are
 smaller and easier to familiarize yourself with, so for further information we recommend taking a look at
 the source code.
@@ -208,6 +223,42 @@ into formFilled. formFilled then checks the values to make sure there's an actua
 if there are, it passes the object to the CalendarsScreen, which creates a new day object and
 adds this to the Agenda, and then navigates to the CalendarsScreen. However, if there is no date or time, it passes nothing, 
 and only navigates back to the CalendarsScreen
+
+```
+const fields = [
+    {
+      type: 'text',
+      name: 'Appointment',
+      required: true,
+      label: 'Appointment',
+    },
+    {
+      name: 'date',
+      type: 'date',
+      mode: 'date',
+      required: true,
+    },
+    {
+      name: 'time',
+      type: 'date',
+      mode: 'time',
+      required: false,
+    },
+  ];
+  
+Render(){
+	return(
+		<GenerateForm
+				ref={(c) => {
+				  this.FormScreen = c;
+				}}
+				fields={fields}
+			      />
+		)
+	}
+```
+To actually use React Native Form Builder to easily build and render forms, you only need a minor amount of code, as you can see in the example above.
+To see all the possibilities, we'd recommend having a look on the React Native Form Builder page.
 
 #### TodoScreen
 To give a little introduction on how the TodoScreen component works. Todoscreen have some methods it can be wise to familiarize yourself with. We have
